@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/toolbar"
+    tools:context=".GUI.CartActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:background="@color/toolbar"
+            android:layout_height="wrap_content">
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_gravity="center"
+                android:background="@null"
+                app:backgroundTint="@null"
+                android:src="@drawable/ic_baseline_arrow_back_24"
+                android:layout_width="50dp"
+                android:layout_height="50dp"/>
+            <TextView
+                android:paddingVertical="15dp"
+                android:textSize="18dp"
+                android:textColor="@color/white"
+                android:textAlignment="center"
+                android:text="Giỏ hàng"
+                android:layout_marginRight="50dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/custom_border_layout_rd"
+            android:paddingVertical="20dp"
+            android:paddingHorizontal="10dp"
+            android:orientation="vertical">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcvItemCart"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+            <include
+                android:id="@+id/loading"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                layout="@layout/loading"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

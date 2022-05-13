@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ctLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GUI.DetailActivity">
+    <ImageView
+        android:scaleType="centerCrop"
+        android:src="@drawable/av2"
+        android:layout_width="match_parent"
+        android:layout_height="270dp"/>
+
+        <RelativeLayout
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="15dp">
+
+            <ImageButton
+                android:id="@+id/imgBtnBack"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/custom_button_toolbar"
+                android:src="@drawable/ic_baseline_arrow_back_24" />
+
+            <ImageButton
+                android:id="@+id/imgBtnCart"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/custom_button_toolbar"
+                android:src="@drawable/cart_24px" />
+
+        </RelativeLayout>
+
+    <LinearLayout
+        android:layout_marginTop="230dp"
+        android:id="@+id/lLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+       >
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/white"
+            app:cardBackgroundColor="#FFFFFF"
+            app:cardCornerRadius="25dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:paddingVertical="20dp"
+                    android:paddingHorizontal="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/txtName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="Phin sữa đá"
+                            android:textColor="@color/black"
+                            android:textSize="20dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txtPrice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:text="49.000đ"
+                            android:textColor="@color/black"
+                            android:textSize="16dp" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_marginTop="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <RadioGroup
+                            android:layout_centerHorizontal="true"
+                            android:padding="@dimen/activity_horizontal_margin"
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <RadioButton
+                                android:text="S"
+                                android:button="@android:color/transparent"
+                                android:background="@drawable/radio_selector"
+                                android:textColor="@drawable/text_color"
+                                android:elevation="4dp"
+                                android:textAlignment="center"
+                                android:layout_width="70dp"
+                                android:layout_height="wrap_content"/>
+                            <RadioButton
+                                android:text="M"
+                                android:layout_marginHorizontal="25dp"
+                                android:button="@android:color/transparent"
+                                android:background="@drawable/radio_selector"
+                                android:textColor="@drawable/text_color"
+                                android:layout_width="70dp"
+                                android:textAlignment="center"
+                                android:layout_height="wrap_content"/>
+                            <RadioButton
+                                android:text="L"
+                                android:button="@android:color/transparent"
+                                android:background="@drawable/radio_selector"
+                                android:textColor="@drawable/text_color"
+                                android:layout_width="70dp"
+                                android:textAlignment="center"
+                                android:layout_height="wrap_content"/>
+                        </RadioGroup>
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:layout_marginTop="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <RadioGroup
+                            android:layout_centerHorizontal="true"
+                            android:padding="@dimen/activity_horizontal_margin"
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <RadioButton
+                                android:text=" Nóng"
+                                android:button="@android:color/transparent"
+                                android:background="@drawable/radio_selector"
+                                android:textColor="@drawable/text_color"
+                                android:elevation="4dp"
+                                android:textAlignment="center"
+                                android:layout_width="70dp"
+                                android:layout_height="wrap_content"/>
+                            <RadioButton
+                                android:text="Đá"
+                                android:layout_marginHorizontal="25dp"
+                                android:button="@android:color/transparent"
+                                android:background="@drawable/radio_selector"
+                                android:textColor="@drawable/text_color"
+                                android:layout_width="70dp"
+                                android:textAlignment="center"
+                                android:layout_height="wrap_content"/>
+                        </RadioGroup>
+                    </RelativeLayout>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/gray"
+                        app:cardBackgroundColor="#F1F1F1"
+                        app:cardCornerRadius="30dp"
+                        app:cardElevation="0dp"
+                        app:cardUseCompatPadding="true">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="20dp">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:background="@drawable/custom_button_toolbar"
+                                android:layout_height="wrap_content">
+                                <Button
+                                    android:id="@+id/btnExcept"
+                                    android:background="@color/no_color"
+                                    app:backgroundTint="@null"
+                                    android:text="-"
+                                    android:textColor="@color/black"
+                                    android:layout_width="40dp"
+                                    android:textSize="18dp"
+                                    android:layout_height="50dp"/>
+                                <TextView
+                                    android:id="@+id/txtQuantity"
+                                    android:text="1"
+                                    android:textSize="16dp"
+                                    android:textColor="@color/black"
+                                    android:paddingHorizontal="10dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                                <Button
+                                    android:id="@+id/btnPlus"
+                                    android:background="@color/no_color"
+                                    android:text="+"
+                                    android:textSize="18dp"
+                                    android:textColor="@color/black"
+                                    android:layout_width="40dp"
+                                    android:layout_height="50dp"/>
+                            </LinearLayout>
+
+                            <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:background="@drawable/custom_button_toolbar"
+                                android:paddingVertical="12dp"
+                                android:text="Thêm vào giỏ hàng"
+                                app:backgroundTint="@null" />
+
+                        </RelativeLayout>
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

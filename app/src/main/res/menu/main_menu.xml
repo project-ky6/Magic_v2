@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/mnSearch"
+        android:icon="@drawable/icons8_search_24px_3"
+        app:showAsAction="always"
+        android:title="Tìm kiếm"/>
+    <item android:id="@+id/mnCart"
+        app:showAsAction="always"
+        android:icon="@drawable/icons8_add_shopping_cart_36px"
+        android:title="Giỏ hàng"/>
+</menu>
