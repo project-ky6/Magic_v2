@@ -2,6 +2,20 @@ package com.example.magiccoffee_v2.DTO;
 
 public class CartItem{
 
+    public CartItem() {
+
+    }
+
+    public CartItem(int quantity, String name, String image, float totalPrice, String cfId, String temper, String size) {
+        Quantity = quantity;
+        Name = name;
+        Image = image;
+        Price = totalPrice;
+        CfId = cfId;
+        Temper = temper;
+        Size = size;
+    }
+
     public int getQuantity() {
         return Quantity;
     }
@@ -26,11 +40,11 @@ public class CartItem{
         Image = image;
     }
 
-    public double getPrice() {
+    public float getPrice() {
         return Price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(float price) {
         Price = price;
     }
 
@@ -50,22 +64,23 @@ public class CartItem{
         Temper = temper;
     }
 
-    public CartItem(int quantity, String name, String image, double price, String cfId, String temper) {
-        Quantity = quantity;
-        Name = name;
-        Image = image;
-        Price = price;
-        CfId = cfId;
-        Temper = temper;
+    public String getSize() {
+        return Size;
+    }
+
+    public void setSize(String size) {
+        Size = size;
     }
 
     private int Quantity;
-
     private String Name;
     private String Image;
-    private double Price;
+    private float Price;
     private String CfId;
     private String Temper;
+
+
+    private String Size;
 
 
 }

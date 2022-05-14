@@ -10,7 +10,9 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 
+import com.example.magiccoffee_v2.DTO.Cart;
 import com.example.magiccoffee_v2.DTO.CartItem;
+import com.example.magiccoffee_v2.DataLocal.DataLocalManager;
 import com.example.magiccoffee_v2.GUI.Adapter.CartAdapter;
 import com.example.magiccoffee_v2.R;
 
@@ -22,6 +24,7 @@ public class CartActivity extends AppCompatActivity {
     private List<CartItem> cartItems;
     private RelativeLayout loading;
     private ImageButton btnBack;
+    private Button btnDeleteCart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,18 +34,27 @@ public class CartActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.rcvItemCart);
         loading = findViewById(R.id.loading);
         btnBack = findViewById(R.id.btnBack);
+        btnDeleteCart = findViewById(R.id.btnDeleteCart);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         cartItems = new ArrayList<CartItem>();
 
-        cartItems.add(new CartItem(3, "HUng", "sass",10202, "ưqdhwqod", "Nóng"));
-        cartItems.add(new CartItem(3, "HUng", "sass",10202, "ưqdhwqod", "Nóng"));
-        cartItems.add(new CartItem(3, "HUng", "sass",10202, "ưqdhwqod", "Nóng"));
-        cartItems.add(new CartItem(3, "HUng", "sass",10202, "ưqdhwqod", "Nóng"));
-        cartItems.add(new CartItem(3, "HUng", "sass",10202, "ưqdhwqod", "Nóng"));
-        cartItems.add(new CartItem(3, "HUng", "sass",10202, "ưqdhwqod", "Nóng"));
-        cartItems.add(new CartItem(3, "HUng", "sass",10202, "ưqdhwqod", "Nóng"));
+        Cart cart = DataLocalManager.getCart();
+        if(cart != null)
+        {
+            if(cart.getItems().size() > 0){
+                for(CartItem cartItem: cart.getItems()){
+                    cartItems.add(cartItem);
+                }
+            }
+
+        }
+
+        btnDeleteCart.setOnClickListener(view -> {
+            DataLocalManager.deleteAllCart();
+        });
+
 
         CartAdapter cartAdapter = new CartAdapter(cartItems, this);
 

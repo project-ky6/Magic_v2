@@ -41,20 +41,7 @@ private ActivityMapsBinding binding;
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
-        ApiService.apiService.getListBranch().enqueue(new Callback<List<Branch>>() {
-            @Override
-            public void onResponse(Call<List<Branch>> call, Response<List<Branch>> response) {
-                List<Branch> branches = response.body();
-                System.out.println(branches.size());
-            }
-
-            @Override
-            public void onFailure(Call<List<Branch>> call, Throwable t) {
-
-            }
-        });
-        LatLng sydney = new LatLng(10.02020022, 102.22002);
+        LatLng sydney = new LatLng(10.809903026252618, 106.62085120950887);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }

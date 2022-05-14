@@ -30,12 +30,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-        try {
-            URL url = new URL("http://developer.android.com/images/activity_lifecycle.png");
-            new DownloadImage(this).execute(url);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+
         navView = findViewById(R.id.bottomNav_view);
         viewPager = findViewById(R.id.view_pager);
 

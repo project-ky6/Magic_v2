@@ -8,8 +8,6 @@ import java.util.List;
 
 public class Coffee implements Serializable {
 
-
-
     public Coffee(String id, String imageLink, String name, String type, float price, List<Size> size, List<Temper> temper) {
         this.id = id;
         ImageLink = imageLink;

@@ -49,34 +49,35 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-
         if (Build.VERSION.SDK_INT >= 21) {
             Window window = this.getActivity().getWindow();
             window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
             window.setStatusBarColor(this.getResources().getColor(R.color.white));
         }
-
-        toolbar = view.findViewById(R.id.toolBar);
-        btnLoginSigin = view.findViewById(R.id.btnLoginSigin);
-        recyclerView = view.findViewById(R.id.rcvTop);
-        cardView = view.findViewById(R.id.crdViewLogin);
-        imgBtnSearch = view.findViewById(R.id.imgBtnSearch);
-
-        ArrayList<Coffee> coffees = getListCoffee();
-        coffeeAdapter = new CoffeeAdapter(getContext(),coffees, false);
-
-        HorizontalLayout = new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false);
-        recyclerView.setLayoutManager(HorizontalLayout);
-
-        recyclerView.setAdapter(coffeeAdapter);
-
+        findView(view);
+        setAdapter();
         event();
-
         if(user.getUid() != null){
             cardView.setVisibility(View.GONE);
         }
 
         return view;
+    }
+
+    private void setAdapter() {
+        ArrayList<Coffee> coffees = getListCoffee();
+        coffeeAdapter = new CoffeeAdapter(getContext(),coffees, false);
+        HorizontalLayout = new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false);
+        recyclerView.setLayoutManager(HorizontalLayout);
+        recyclerView.setAdapter(coffeeAdapter);
+    }
+
+    private void findView(View view) {
+        toolbar = view.findViewById(R.id.toolBar);
+        btnLoginSigin = view.findViewById(R.id.btnLoginSigin);
+        recyclerView = view.findViewById(R.id.rcvTop);
+        cardView = view.findViewById(R.id.crdViewLogin);
+        imgBtnSearch = view.findViewById(R.id.imgBtnSearch);
     }
 
     private ArrayList<Coffee> getListCoffee() {
@@ -93,7 +94,7 @@ public class HomeFragment extends Fragment {
 
     private void event(){
         imgBtnSearch.setOnClickListener(view -> {
-            Intent intent = new Intent(getContext(), DrawerActivity.class);
+            Intent intent = new Intent(getContext(), SearchActivity.class);
             startActivity(intent);
         });
 

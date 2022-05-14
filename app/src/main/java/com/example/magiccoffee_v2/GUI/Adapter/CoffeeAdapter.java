@@ -60,41 +60,6 @@ public class CoffeeAdapter extends RecyclerView.Adapter<CoffeeAdapter.CoffeViewH
         holder.txtTitle.setText(coffee.getName());
         holder.txtPrice.setText(coffee.getPrice() + "");
 
-
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-
-        StorageReference storageRef = storage.getReference();
-        StorageReference islandRef = storageRef.child("images/"+coffee.getImageLink());
-        final long ONE_MEGABYTE = 1024 * 1024;
-        islandRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-            @Override
-            public void onSuccess(byte[] bytes) {
-
-                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-
-                ContextWrapper cw = new ContextWrapper(mContext);
-                File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
-                File file = new File(directory, coffee.getImageLink());
-                if (!file.exists()) {
-                    Log.d("path", file.toString());
-                    FileOutputStream fos = null;
-                    try {
-                        fos = new FileOutputStream(file);
-                        bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
-                        fos.flush();
-                        fos.close();
-                    } catch (java.io.IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                // Handle any errors
-            }
-        });
-
         //Sản phẩm nổi bật
         if(!visibilityPrice){
             holder.txtPrice.setVisibility(View.GONE);
