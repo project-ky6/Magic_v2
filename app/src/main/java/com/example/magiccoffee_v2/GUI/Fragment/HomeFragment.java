@@ -14,14 +14,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.example.magiccoffee_v2.DTO.Coffee;
 import com.example.magiccoffee_v2.DTO.User;
 import com.example.magiccoffee_v2.GUI.Adapter.CoffeeAdapter;
-import com.example.magiccoffee_v2.GUI.Drawer.DrawerActivity;
+import com.example.magiccoffee_v2.GUI.BarcodeActivity;
 import com.example.magiccoffee_v2.GUI.Login.LoginActivity;
 import com.example.magiccoffee_v2.GUI.SearchActivity;
 import com.example.magiccoffee_v2.R;
@@ -31,7 +30,7 @@ import java.util.ArrayList;
 public class HomeFragment extends Fragment {
     private Toolbar toolbar;
     private Button btnLoginSigin;
-    private ImageButton imgBtnSearch;
+    private ImageButton imgBtnSearch, imgBtnBarcode;
 
     private RecyclerView recyclerView;
     private CardView cardView;
@@ -61,6 +60,8 @@ public class HomeFragment extends Fragment {
             cardView.setVisibility(View.GONE);
         }
 
+
+
         return view;
     }
 
@@ -73,6 +74,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void findView(View view) {
+        imgBtnBarcode = view.findViewById(R.id.imgBtnBarcode);
         toolbar = view.findViewById(R.id.toolBar);
         btnLoginSigin = view.findViewById(R.id.btnLoginSigin);
         recyclerView = view.findViewById(R.id.rcvTop);
@@ -83,11 +85,11 @@ public class HomeFragment extends Fragment {
     private ArrayList<Coffee> getListCoffee() {
         ArrayList<Coffee> al = new ArrayList<>();
 
-        al.add(new Coffee(R.drawable.av2, "Phin Sữa đá", "dqw", 29000 ));
-        al.add(new Coffee(R.drawable.av2, "Phin Đen đá", "dqwd", 29000 ));
-        al.add(new Coffee(R.drawable.av2, "Bạc Xỉu", "dw", 29000 ));
-        al.add(new Coffee(R.drawable.av2, "Phin Sữa Nóng", "dwqd", 29000 ));
-        al.add(new Coffee(R.drawable.av2, "Phin Đen Nóng", "dqwd", 29000 ));
+        al.add(new Coffee("Phin Sữa đá", "dqw", 29000 ));
+        al.add(new Coffee("Phin Đen đá", "dqwd", 29000 ));
+        al.add(new Coffee("Bạc Xỉu", "dw", 29000 ));
+        al.add(new Coffee("Phin Sữa Nóng", "dwqd", 29000 ));
+        al.add(new Coffee("Phin Đen Nóng", "dqwd", 29000 ));
 
         return al;
     }
@@ -102,5 +104,11 @@ public class HomeFragment extends Fragment {
             Intent intent = new Intent(getContext(), LoginActivity.class);
             startActivity(intent);
         });
+
+        imgBtnBarcode.setOnClickListener(view -> {
+            Intent intent = new Intent(getContext(), BarcodeActivity.class);
+            startActivity(intent);
+        });
+
     }
 }

@@ -9,15 +9,11 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowManager;
-
 import com.example.magiccoffee_v2.DTO.User;
+import com.example.magiccoffee_v2.DataLocal.DataLocalManager;
 import com.example.magiccoffee_v2.GUI.Adapter.ViewPagerAdapter;
 import com.example.magiccoffee_v2.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.net.MalformedURLException;
-import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
 
         navView = findViewById(R.id.bottomNav_view);
@@ -36,10 +31,12 @@ public class MainActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getBundleExtra("Data");
         user = (User) bundle.getSerializable("User");
-
-
+        DataLocalManager.init(getApplicationContext());
         setUpViewPager();
+        selectItemNavBottom();
+    }
 
+    private void selectItemNavBottom() {
         navView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

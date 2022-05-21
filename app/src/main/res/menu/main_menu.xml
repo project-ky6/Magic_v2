@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/mnSearch"
-        android:icon="@drawable/icons8_search_24px_3"
+        android:icon="@mipmap/search_24px_1"
         app:showAsAction="always"
         android:title="Tìm kiếm"/>
     <item android:id="@+id/mnCart"
         app:showAsAction="always"
-        android:icon="@drawable/icons8_add_shopping_cart_36px"
+        android:icon="@mipmap/cart_24px"
         android:title="Giỏ hàng"/>
 </menu>

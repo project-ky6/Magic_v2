@@ -27,7 +27,7 @@
                     android:layout_height="wrap_content">
                     <ImageView
                         android:layout_gravity="center"
-                        android:src="@drawable/marker_24px"
+                        android:src="@mipmap/marker_24px"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                     <LinearLayout
@@ -53,7 +53,7 @@
                     </LinearLayout>
                     <ImageView
                         android:layout_gravity="center"
-                        android:src="@drawable/down_24px"
+                        android:src="@mipmap/search_24px_1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>

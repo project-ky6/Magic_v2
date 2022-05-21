@@ -1,22 +1,18 @@
 package com.example.magiccoffee_v2.GUI;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import android.content.Intent;
-import android.graphics.Point;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.Display;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
@@ -26,8 +22,24 @@ import com.example.magiccoffee_v2.DTO.Coffee;
 import com.example.magiccoffee_v2.DTO.Size;
 import com.example.magiccoffee_v2.DTO.Temper;
 import com.example.magiccoffee_v2.DataLocal.DataLocalManager;
+import com.example.magiccoffee_v2.DataLocal.ImageInternalStorage;
 import com.example.magiccoffee_v2.R;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.share.Sharer;
+import com.facebook.share.model.ShareContent;
+import com.facebook.share.model.ShareHashtag;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.model.ShareMediaContent;
+import com.facebook.share.model.SharePhoto;
+import com.facebook.share.model.SharePhotoContent;
+import com.facebook.share.widget.ShareButton;
+import com.facebook.share.widget.ShareDialog;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,14 +47,17 @@ public class DetailActivity extends AppCompatActivity {
 
    private Button btnPlus, btnExcept, btnAddToCart;
    private ImageButton imgBtnBack, imgBtnCart;
+   private ImageView imgAvt;
    private TextView txtQuantity, txtName, txtPrice, txtTotalPrice;
    private RadioButton btnNong, btnLanh, btnS, btnM, btnL;
+
    private Coffee coffee;
-   private float totalPrice;
+   private int totalPrice;
    private String size = "S";
    private String temper = "";
    private int quantity = 0;
 
+    private ShareButton shareButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,20 +70,45 @@ public class DetailActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getBundleExtra("Data");
         coffee = (Coffee) bundle.getSerializable("Coffee");
-        DataLocalManager.init(getApplicationContext());
+
         findView();
-        event();
+        loadImage();
+        shareFacebook();
         setData();
+        event();
+    }
+
+    private void shareFacebook() {
+        Bitmap image = ImageInternalStorage.loadImageBitmap(DetailActivity.this, coffee.getImageLink());
+        SharePhoto photo = new SharePhoto.Builder()
+                .setBitmap(image)
+                .build();
+        SharePhotoContent content = new SharePhotoContent.Builder()
+                .addPhoto(photo)
+                .setShareHashtag(new ShareHashtag.Builder()
+                        .setHashtag("#MagicCoffee")
+                        .build())
+                .build();
+        shareButton.setShareContent(content);
+    }
+
+    private void loadImage() {
+        ImageInternalStorage.setImage(DetailActivity.this, imgAvt, coffee.getImageLink());
     }
 
     private void setData() {
         txtName.setText(coffee.getName());
-        txtPrice.setText(coffee.getPrice()+"");
+
+        NumberFormat formatter = NumberFormat.getCurrencyInstance();
+        String moneyString = formatter.format(coffee.getPrice());
+
+        txtPrice.setText(moneyString);
 
         if(coffee.getTemper().size() <= 1){
             btnNong.setVisibility(View.GONE);
             btnLanh.setVisibility(View.GONE);
         }
+
         btnM.setVisibility(View.GONE);
         btnL.setVisibility(View.GONE);
         btnS.setVisibility(View.GONE);
@@ -138,19 +178,9 @@ public class DetailActivity extends AppCompatActivity {
             String image = coffee.getImageLink();
             String cfId = coffee.getId();
             CartItem cartItem = new CartItem(quantity, name, image, totalPrice, cfId, temper, size);
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-            Cart cart = DataLocalManager.getCart();
-            if(cart != null){
-                cart.addItem(cartItem);
-            }
-            else{
-                List<CartItem> cartItems = new ArrayList<CartItem>();
-                cartItems.add(cartItem);
-                cart = new Cart("ADDTOCAR", cartItems, "231231", "heleleo");
-            }
-
-            DataLocalManager.setCart(cart);
-
+            DataLocalManager.updateCart(cartItem, user.getUid(),"096985509");
         });
     }
 
@@ -204,6 +234,7 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void findView() {
+        shareButton = findViewById(R.id.fb_share_button);
         btnNong = findViewById(R.id.btnNong);
         btnLanh = findViewById(R.id.btnLanh);
         btnPlus = findViewById(R.id.btnPlus);
@@ -218,5 +249,6 @@ public class DetailActivity extends AppCompatActivity {
         btnM = findViewById(R.id.btnM);
         btnL = findViewById(R.id.btnL);
         txtTotalPrice= findViewById(R.id.txtTotalPrice);
+        imgAvt = findViewById(R.id.imgAv);
     }
 }

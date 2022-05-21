@@ -49,7 +49,7 @@
             android:layout_marginTop="70dp"
             android:hint="Số điện thoại"
             app:endIconMode="clear_text"
-            app:startIconDrawable="@drawable/phone_24px_1">
+            app:startIconDrawable="@mipmap/phone_24px_1">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtPhoneNumber"

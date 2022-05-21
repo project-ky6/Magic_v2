@@ -58,9 +58,15 @@ public class Cart {
     public void setUidNV(String uidNV) {
         UidNV = uidNV;
     }
-    private String Uid;
+    public String getPhoneNumber() {
+        return PhoneNumber;
+    }
 
-    public Cart(String uid, String id, String status, List<CartItem> items, String price, String note, String uidNV) {
+    public void setPhoneNumber(String phoneNumber) {
+        PhoneNumber = phoneNumber;
+    }
+
+    public Cart(String uid, String id, String status, List<CartItem> items, String price, String note, String uidNV, String phoneNumber) {
         Uid = uid;
         this.id = id;
         Status = status;
@@ -68,6 +74,7 @@ public class Cart {
         Price = price;
         Note = note;
         UidNV = uidNV;
+        PhoneNumber = phoneNumber;
     }
 
     public Cart(String status, List<CartItem> items, String price, String note) {
@@ -76,15 +83,28 @@ public class Cart {
         Price = price;
         Note = note;
     }
-
+    public Cart(Cart cart) {
+        Uid = cart.Uid;
+        this.id = cart.id;
+        Status = cart.Status;
+        Items = cart.Items;
+        Price = cart.Price;
+        Note = cart.Note;
+        UidNV = cart.UidNV;
+        PhoneNumber = cart.PhoneNumber;
+    }
     public Cart() {
     }
+    private String Uid;
     private String id;
     private String Status;
     private List<CartItem> Items;
     private String Price;
     private String Note;
     private String UidNV;
+
+
+    private String PhoneNumber;
 
     public void addItem(CartItem item){
         for(CartItem cartItem: Items){

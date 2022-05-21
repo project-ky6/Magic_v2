@@ -3,17 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_gallery">
+    app:startDestination="@+id/nav_home">
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.magiccoffee_v2.GUI.Drawer.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
-
+        android:id="@+id/nav_home"
+        android:name="com.example.magiccoffee_v2.GUI.Drawer.DashboardFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.magiccoffee_v2.GUI.Drawer.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_statistical"
+        android:name="com.example.magiccoffee_v2.GUI.Drawer.StatisticalFragment"
+        android:label="@string/menu_tk"
+        tools:layout="@layout/fragment_statistical" />
+    <fragment
+        android:id="@+id/nav_order"
+        android:name="com.example.magiccoffee_v2.GUI.Drawer.OrderAdminFragment"
+        android:label="@string/order_admin"
+        tools:layout="@layout/fragment_order_admin" />
 </navigation>

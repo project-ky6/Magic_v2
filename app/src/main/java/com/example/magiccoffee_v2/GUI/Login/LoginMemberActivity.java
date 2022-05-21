@@ -1,6 +1,5 @@
 package com.example.magiccoffee_v2.GUI.Login;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -8,7 +7,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -17,15 +15,10 @@ import android.widget.Toast;
 import com.example.magiccoffee_v2.API.ApiService;
 import com.example.magiccoffee_v2.DTO.Login;
 import com.example.magiccoffee_v2.DTO.Member;
-import com.example.magiccoffee_v2.GUI.Drawer.DrawerActivity;
+import com.example.magiccoffee_v2.GUI.Drawer.AdminActivity;
 import com.example.magiccoffee_v2.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -124,7 +117,7 @@ public class LoginMemberActivity extends AppCompatActivity {
         }
     }
     private void updateUI() {
-        Intent intent = new Intent(LoginMemberActivity.this, DrawerActivity.class);
+        Intent intent = new Intent(LoginMemberActivity.this, AdminActivity.class);
         startActivity(intent);
         finish();
     }

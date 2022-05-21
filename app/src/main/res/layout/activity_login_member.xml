@@ -41,7 +41,7 @@
         android:layout_marginTop="50dp"
         android:hint="Email"
         app:endIconMode="clear_text"
-        app:startIconDrawable="@drawable/secured_letter_24px_1">
+        app:startIconDrawable="@mipmap/secured_letter_24px_1">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txtUsername"
@@ -59,7 +59,7 @@
         android:layout_marginTop="15dp"
         android:hint="Mật khẩu"
         app:endIconMode="password_toggle"
-        app:startIconDrawable="@drawable/key_24px">
+        app:startIconDrawable="@mipmap/key_24px">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txtPassword"

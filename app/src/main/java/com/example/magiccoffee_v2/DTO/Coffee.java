@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Coffee implements Serializable {
 
-    public Coffee(String id, String imageLink, String name, String type, float price, List<Size> size, List<Temper> temper) {
+    public Coffee(String id, String imageLink, String name, String type, int price, List<Size> size, List<Temper> temper) {
         this.id = id;
         ImageLink = imageLink;
         Name = name;
@@ -17,12 +17,11 @@ public class Coffee implements Serializable {
         Size = size;
         Temper = temper;
     }
-    private int image;
     private String id;
     private String ImageLink;
     private String Name;
     private String Type;
-    private float Price;
+    private int Price;
 
     public List<Size> getSize() {
         return Size;
@@ -43,13 +42,6 @@ public class Coffee implements Serializable {
     private List<Size> Size;
     private List<Temper> Temper;
 
-    public int getImage() {
-        return R.drawable.av2;
-    }
-
-    public void setImage() {
-        this.image = R.drawable.av2;
-    }
     public String getId() {
         return id;
     }
@@ -82,16 +74,15 @@ public class Coffee implements Serializable {
         Type = type;
     }
 
-    public float getPrice() {
+    public int getPrice() {
         return Price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(int price) {
         Price = price;
     }
 
-    public Coffee(int image, String name,String Type, float price) {
-        this.image = image;
+    public Coffee(String name,String Type, int price) {
         this.Name = name;
         this.Price = price;
         this.Type = Type;

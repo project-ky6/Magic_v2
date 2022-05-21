@@ -7,8 +7,9 @@
     android:layout_height="match_parent"
     tools:context=".GUI.DetailActivity">
     <ImageView
+        android:id="@+id/imgAv"
         android:scaleType="centerCrop"
-        android:src="@drawable/av2"
+        android:src="@mipmap/av2"
         android:layout_width="match_parent"
         android:layout_height="270dp"/>
 
@@ -24,14 +25,7 @@
                 android:layout_height="50dp"
                 android:background="@drawable/custom_button_toolbar"
                 android:src="@drawable/ic_baseline_arrow_back_24" />
-            <ImageButton
-                android:id="@+id/imgBtnShare"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_toLeftOf="@+id/imgBtnCart"
-                android:layout_marginLeft="10dp"
-                android:background="@drawable/custom_button_toolbar"
-                android:src="@drawable/cart_24px" />
+
             <ImageButton
                 android:id="@+id/imgBtnCart"
                 android:layout_width="50dp"
@@ -39,7 +33,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginLeft="10dp"
                 android:background="@drawable/custom_button_toolbar"
-                android:src="@drawable/cart_24px" />
+                android:src="@mipmap/cart_24px" />
 
         </RelativeLayout>
 
@@ -93,13 +87,19 @@
                             android:textColor="@color/black"
                             android:textSize="16dp" />
                     </RelativeLayout>
-                    <TextView
-                        android:layout_marginVertical="10dp"
-                        android:textSize="16dp"
-                        android:textColor="@color/black"
-                        android:text="Lưu ý: Mỗi size và nóng lạnh sẽ có giá tiền khác nhau"
-                        android:layout_width="match_parent"
+                    <com.facebook.share.widget.ShareButton
+                        android:id="@+id/fb_share_button"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="10dp"
+                        android:text="Lưu ý: Mỗi size và nóng lạnh sẽ có giá tiền khác nhau"
+                        android:textColor="@color/black"
+                        android:textSize="16dp" />
+
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

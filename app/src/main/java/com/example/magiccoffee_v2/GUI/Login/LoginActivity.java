@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +43,7 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private RelativeLayout loading;
     private TextView textViewLogin;
     private Button btnLoginPhoneNumber, btnLoginGoogle, btnLoginFacebook;
     private String filename = "Uid.txt";
@@ -67,12 +69,12 @@ public class LoginActivity extends AppCompatActivity {
         btnLoginPhoneNumber = findViewById(R.id.btnLoginPhone);
         btnLoginGoogle = findViewById(R.id.btnLoginGoogle);
         btnLoginFacebook = findViewById(R.id.btnLoginFacebook);
+        loading = findViewById(R.id.loading);
+        loading.setVisibility(View.GONE);
     }
 
     private void event() {
-
         //Sự kiện
-
         textViewLogin.setOnClickListener(view -> {
             Intent intent = new Intent(LoginActivity.this, LoginMemberActivity.class);
             startActivity(intent);
@@ -82,6 +84,7 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
         });
         btnLoginGoogle.setOnClickListener(view -> {
+
             GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                     .requestIdToken(getString(R.string.default_web_client_id))
                     .requestEmail()
@@ -90,7 +93,9 @@ public class LoginActivity extends AppCompatActivity {
             mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
             mAuth = FirebaseAuth.getInstance();
+
             signIn();
+
         });
         btnLoginFacebook.setOnClickListener(view->{
 
@@ -105,7 +110,7 @@ public class LoginActivity extends AppCompatActivity {
         if (requestCode == RC_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
-                // Google Sign In was successful, authenticate with Firebase
+                loading.setVisibility(View.VISIBLE);
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 firebaseAuthWithGoogle(account.getIdToken());
             } catch (ApiException e) {
@@ -122,9 +127,6 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             FirebaseUser user = mAuth.getCurrentUser();
                             checkUser(user);
-                        } else {
-                            // If sign in fails, display a message to the user.
-
                         }
                     }
                 });

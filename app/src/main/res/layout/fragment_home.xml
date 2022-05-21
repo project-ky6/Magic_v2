@@ -22,12 +22,20 @@
                 android:layout_marginRight="15dp">
 
                 <ImageButton
+                    android:id="@+id/imgBtnBarcode"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_toStartOf="@+id/imgBtnSearch"
+                    android:background="@drawable/custom_button_toolbar"
+                    android:src="@mipmap/search_24px_1" />
+                <ImageButton
+                    android:layout_marginLeft="10dp"
                     android:id="@+id/imgBtnSearch"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_alignParentEnd="true"
                     android:background="@drawable/custom_button_toolbar"
-                    android:src="@drawable/search_24px_1" />
+                    android:src="@mipmap/search_24px_1" />
             </RelativeLayout>
 
         </androidx.appcompat.widget.Toolbar>
@@ -94,7 +102,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/bg_login" />
+                    android:src="@mipmap/bg_login" />
 
                 <TextView
                     android:text="Sản phẩm nổi bật"

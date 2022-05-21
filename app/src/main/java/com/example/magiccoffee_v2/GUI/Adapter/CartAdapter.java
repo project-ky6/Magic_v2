@@ -1,6 +1,7 @@
 package com.example.magiccoffee_v2.GUI.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,75 +13,68 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.magiccoffee_v2.DTO.Cart;
 import com.example.magiccoffee_v2.DTO.CartItem;
+import com.example.magiccoffee_v2.DataLocal.ImageInternalStorage;
+import com.example.magiccoffee_v2.GUI.Drawer.DetailCartActivity;
 import com.example.magiccoffee_v2.R;
 
 import java.util.List;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder>{
 
-    private List<CartItem> cartItems;
+    private List<Cart> carts;
     private Context mContext;
 
-    public CartAdapter(List<CartItem> cartItems, Context context) {
-        this.cartItems = cartItems;
+    public CartAdapter(List<Cart> carts, Context context) {
+        this.carts = carts;
         this.mContext = context;
     }
 
     @NonNull
     @Override
     public CartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_cart, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_order, parent, false);
         return new CartViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull CartViewHolder holder, int position) {
-        CartItem cartItem  = cartItems.get(position);
-        if(cartItem == null) return;
-        holder.imgCoffee.setImageResource(R.drawable.av2);
-        holder.txtNameCf.setText(cartItem.getName());
-        holder.txtQuantily.setText(cartItem.getQuantity()+"");
-        holder.txtPrice.setText(cartItem.getPrice()+"");
+        Cart cart  = carts.get(position);
+        if(cart == null) return;
 
-        holder.btnIncrease.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                cartItem.setQuantity(cartItem.getQuantity()+1);
-            }
-        });
-        holder.btnDecrease.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                cartItem.setQuantity(cartItem.getQuantity()-1);
-            }
+
+//        holder.imgOrder.setImageBitmap(ImageInternalStorage.loadImageBitmap(mContext,"americano.png"));
+        holder.txtSDT.setText(cart.getPhoneNumber());
+        holder.txtTimeReceive.setText(cart.getPrice());
+        holder.txtPrice.setText(cart.getPrice());
+
+        holder.lLayout.setOnClickListener(view -> {
+            Intent intent = new Intent(mContext, DetailCartActivity.class);
+            mContext.startActivity(intent);
         });
     }
 
     @Override
     public int getItemCount() {
 
-        if (cartItems == null)
+        if (carts == null)
             return 0;
-        return cartItems.size();
+        return carts.size();
     }
 
     public class CartViewHolder extends RecyclerView.ViewHolder{
-        public ImageView imgCoffee;
-        public TextView txtNameCf;
-        public TextView txtPrice;
-        public TextView txtQuantily;
-        public Button btnDecrease, btnIncrease;
-        public LinearLayout llLayout;;
+        public ImageView imgOrder;
+        public TextView txtSDT, txtTimeReceive, txtPrice;
+        public LinearLayout lLayout;
 
         public CartViewHolder(@NonNull View itemView) {
             super(itemView);
-            imgCoffee = itemView.findViewById(R.id.imgCoffee);
-            txtNameCf = itemView.findViewById(R.id.txtNameCf);
-            txtPrice = itemView.findViewById(R.id.txtPriceCf);
-            txtQuantily = itemView.findViewById(R.id.txtQuantity);
-            btnDecrease = itemView.findViewById(R.id.btnExcept);
-            btnIncrease = itemView.findViewById(R.id.btnPlus);
+            txtSDT = itemView.findViewById(R.id.txtSDT);
+            txtTimeReceive = itemView.findViewById(R.id.txtTimeReceive);
+            txtPrice = itemView.findViewById(R.id.txtPrice);
+            imgOrder = itemView.findViewById(R.id.imgOrder);
+            lLayout = itemView.findViewById(R.id.lLayout);
         }
     }
 }

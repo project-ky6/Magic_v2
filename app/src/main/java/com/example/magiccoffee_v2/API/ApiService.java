@@ -1,10 +1,12 @@
 package com.example.magiccoffee_v2.API;
 
 import com.example.magiccoffee_v2.DTO.Branch;
+import com.example.magiccoffee_v2.DTO.Cart;
 import com.example.magiccoffee_v2.DTO.Category;
 import com.example.magiccoffee_v2.DTO.Coffee;
 import com.example.magiccoffee_v2.DTO.Login;
 import com.example.magiccoffee_v2.DTO.Member;
+import com.example.magiccoffee_v2.DTO.Result;
 import com.example.magiccoffee_v2.DTO.User;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -20,6 +22,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface ApiService {
 
@@ -34,8 +37,15 @@ public interface ApiService {
     @GET("branches")
     Call<List<Branch>> getListBranch();
 
-    @GET("users")
-    Call<List<User>> getListUser();
+    @GET("carts/setCart")
+    Call<Cart> getCart(@Query("uid") String Uid);
+
+    @GET("carts/statistical")
+    Call<List<Cart>> getCartsByStatus(@Query("s") String status);
+
+    @Headers({"Content-Type: application/json"})
+    @POST("carts/update")
+    Call<Result> updateCart(@Body Cart cart);
 
     @GET("users/{uid}")
     Call<User> getUser(@Path("uid") String Uid);
@@ -45,6 +55,10 @@ public interface ApiService {
 
     @GET("coffees")
     Call<List<Coffee>> getListCoffee();
+
+    //coffees?n=name
+    @GET("coffees")
+    Call<List<Coffee>> searchCoffees(@Query("n") String name);
 
     @Headers({"Content-Type: application/json"})
     @POST("users/create")

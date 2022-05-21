@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:padding="20dp"
     tools:context=".GUI.Login.LoginActivity">
-
+<LinearLayout
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <ImageView
         android:layout_marginTop="50dp"
         android:layout_width="150dp"
@@ -34,7 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <Button
-        android:drawableLeft="@drawable/phone_24px_1"
+        android:drawableLeft="@mipmap/phone_24px_1"
         android:id="@+id/btnLoginPhone"
         android:layout_marginTop="70dp"
         android:paddingVertical="10dp"
@@ -44,7 +47,7 @@
         android:layout_height="wrap_content"
         android:text="Tiếp tục với số điện thoại" />
     <Button
-        android:drawableLeft="@drawable/google_24px"
+        android:drawableLeft="@mipmap/google_24px"
         android:id="@+id/btnLoginGoogle"
         android:layout_marginTop="10dp"
         app:backgroundTint="@null"
@@ -55,7 +58,7 @@
         android:layout_height="wrap_content"
         android:text="Tiếp tục với google" />
     <Button
-        android:drawableLeft="@drawable/facebook_24px"
+        android:drawableLeft="@mipmap/facebook_24px"
         android:id="@+id/btnLoginFacebook"
         android:layout_marginTop="10dp"
         app:backgroundTint="@null"
@@ -76,3 +79,9 @@
         android:layout_height="wrap_content"
         android:text="Đăng nhập" />
 </LinearLayout>
+    <include
+        android:id="@+id/loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        layout="@layout/loading"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

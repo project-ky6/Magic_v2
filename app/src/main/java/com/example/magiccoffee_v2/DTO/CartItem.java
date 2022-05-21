@@ -6,7 +6,7 @@ public class CartItem{
 
     }
 
-    public CartItem(int quantity, String name, String image, float totalPrice, String cfId, String temper, String size) {
+    public CartItem(int quantity, String name, String image, int totalPrice, String cfId, String temper, String size) {
         Quantity = quantity;
         Name = name;
         Image = image;
@@ -40,11 +40,11 @@ public class CartItem{
         Image = image;
     }
 
-    public float getPrice() {
+    public int getPrice() {
         return Price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(int price) {
         Price = price;
     }
 
@@ -75,7 +75,7 @@ public class CartItem{
     private int Quantity;
     private String Name;
     private String Image;
-    private float Price;
+    private int Price;
     private String CfId;
     private String Temper;
 

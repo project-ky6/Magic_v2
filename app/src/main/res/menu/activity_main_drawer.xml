@@ -9,29 +9,17 @@
             android:icon="@drawable/ic_menu_camera"
             android:title="@string/menu_home" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_order"
             android:icon="@drawable/ic_menu_gallery"
             android:title="Đơn hàng" />
-
         <item
-            android:id="@+id/nav_gallery2"
+            android:id="@+id/nav_statistical"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Thống kê theo ngày" />
-    </group>
-    <group android:checkableBehavior="single">
+            android:title="Thống kê" />
         <item
-            android:id="@+id/nav_gallery2aae"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Tài khoản" />
-        <item
-            android:id="@+id/nav_gallery2aaes"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Cài đặt" />
-    </group>
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_gallery2aaesss"
+            android:id="@+id/nav_logout"
             android:icon="@drawable/ic_menu_gallery"
             android:title="Đăng xuất" />
     </group>
+
 </menu>

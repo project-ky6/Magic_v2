@@ -35,35 +35,80 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/custom_border_layout_rd"
-            android:paddingVertical="20dp"
-            android:paddingHorizontal="10dp"
-            android:orientation="vertical">
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rcvItemCart"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                />
 
-            <Button
-                android:id="@+id/btnDeleteCart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rcvItemCart" />
-            <include
-                android:id="@+id/loading"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                layout="@layout/loading"
-                />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                android:background="@drawable/custom_border_layout_rd"
+                android:paddingVertical="20dp"
+                android:paddingHorizontal="10dp"
+                android:orientation="vertical">
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <LinearLayout
+                        android:background="#fff"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <LinearLayout
+                            android:background="#fff"
+                            android:paddingHorizontal="10dp"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:text="Địa chỉ nhận hàng"
+                                android:textSize="16dp"
+                                android:textColor="@color/black"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:layout_marginTop="10dp"
+                                android:text="140 Lê Trọng Tấn"
+                                android:textSize="20dp"
+                                android:textColor="@color/black"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_marginTop="10dp"
+                            android:background="#fff"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/rcvItemCart"
+                                android:layout_width="match_parent"
+                                android:nestedScrollingEnabled="false"
+                                android:layout_height="wrap_content"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_marginTop="10dp"
+                            android:background="#fff"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:text="Tóm tắt thanh toán"
+                                android:textSize="16dp"
+                                android:textColor="@color/black"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"/>
+                            <Button
+                                android:id="@+id/btnThanhToan"
+                                android:text="Thanh toán"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </ScrollView>
+                <include
+                    android:id="@+id/loading"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    layout="@layout/loading"
+                    />
+            </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
-
-
-
-
 </LinearLayout>

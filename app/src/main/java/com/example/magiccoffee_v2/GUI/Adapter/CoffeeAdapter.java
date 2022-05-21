@@ -19,6 +19,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.magiccoffee_v2.DTO.Coffee;
+import com.example.magiccoffee_v2.DataLocal.ImageInternalStorage;
+import com.example.magiccoffee_v2.GUI.BarcodeActivity;
 import com.example.magiccoffee_v2.GUI.DetailActivity;
 import com.example.magiccoffee_v2.R;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -56,7 +58,9 @@ public class CoffeeAdapter extends RecyclerView.Adapter<CoffeeAdapter.CoffeViewH
     public void onBindViewHolder(@NonNull CoffeViewHolder holder, int position) {
         Coffee coffee = lCoffee.get(position);
         if(coffee == null) return;
-        holder.imageView.setImageResource(coffee.getImage());
+
+        ImageInternalStorage.setImage(mContext, holder.imageView, coffee.getImageLink());
+
         holder.txtTitle.setText(coffee.getName());
         holder.txtPrice.setText(coffee.getPrice() + "");
 

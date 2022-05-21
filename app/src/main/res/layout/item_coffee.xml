@@ -24,7 +24,7 @@
             <ImageView
                 android:id="@+id/img_item_coffe"
                 android:layout_width="match_parent"
-                android:src="@drawable/av2"
+                android:src="@mipmap/av2"
                 android:scaleType="centerCrop"
                 android:layout_height="170dp"/>
 

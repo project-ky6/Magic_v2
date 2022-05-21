@@ -1,36 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".GUI.SearchActivity">
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:backgroundTint="@color/primary"
-        android:layout_height="wrap_content">
-        <androidx.appcompat.widget.Toolbar
+
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
+            android:backgroundTint="@color/primary"
             android:layout_height="wrap_content">
-            <ImageButton
-                android:src="@drawable/ic_baseline_arrow_back_24"
-                android:layout_width="wrap_content"
-                android:background="@null"
-                android:layout_marginEnd="10dp"
-                android:layout_height="wrap_content"/>
-            <androidx.appcompat.widget.SearchView
-                android:id="@+id/search_vew_pr"
+            <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_centerInParent="true"
-                app:iconifiedByDefault="false"
-                android:background="@color/white"
-                android:layout_marginEnd="16dp"
-                app:defaultQueryHint="Tìm kiếm"/>
+                android:layout_height="wrap_content">
+                <ImageButton
+                    android:src="@drawable/ic_baseline_arrow_back_24"
+                    android:layout_width="wrap_content"
+                    android:background="@null"
+                    android:layout_marginEnd="10dp"
+                    android:layout_height="wrap_content"/>
+                <androidx.appcompat.widget.SearchView
+                    android:id="@+id/search_vew_pr"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_centerInParent="true"
+                    app:iconifiedByDefault="false"
+                    android:background="@color/white"
+                    android:layout_marginEnd="16dp"
+                    app:defaultQueryHint="Tìm kiếm"/>
 
-        </androidx.appcompat.widget.Toolbar>
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <include android:id="@+id/loading"
-        layout="@layout/loading"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.AppBarLayout>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:cardUseCompatPadding="true">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:paddingLeft="2dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Suggestion key"
+                    android:textSize="16sp"/>
+                <me.gujun.android.taggroup.TagGroup
+                    android:padding="8dp"
+                    android:id="@+id/tag_group"
+                    app:atg_borderColor="@color/primary"
+                    app:atg_textColor="@color/primary_02"
+                    style="@style/TagGroup" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcvMenu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <include android:id="@+id/loading"
+            layout="@layout/loading"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

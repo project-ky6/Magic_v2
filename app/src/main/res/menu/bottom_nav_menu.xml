@@ -2,17 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/mnHome"
-        android:icon="@drawable/home_24px_2"
+        android:icon="@mipmap/home_24px_2"
         android:title="Trang chủ"/>
     <item android:id="@+id/mnProduct"
-        android:icon="@drawable/menu_24px_1"
+        android:icon="@mipmap/menu_24px_1"
         android:title="Sản phẩm"/>
     <item
         android:id="@+id/mnHeart"
-        android:icon="@drawable/hearts_24px_1"
+        android:icon="@mipmap/hearts_24px_1"
         android:title="Yêu thích"/>
     <item
         android:id="@+id/mnMy"
-        android:icon="@drawable/user_24px_1"
+        android:icon="@mipmap/user_24px_1"
         android:title="Tài khoản"/>
 </menu>
