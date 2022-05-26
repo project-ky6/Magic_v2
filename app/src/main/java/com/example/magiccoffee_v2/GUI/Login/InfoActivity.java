@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.magiccoffee_v2.API.ApiService;
 import com.example.magiccoffee_v2.DTO.OrderInfo;
+import com.example.magiccoffee_v2.DTO.Result;
 import com.example.magiccoffee_v2.DTO.User;
 import com.example.magiccoffee_v2.GUI.MainActivity;
 import com.example.magiccoffee_v2.GUI.Static.RequestCode;
@@ -79,7 +80,23 @@ public class InfoActivity extends AppCompatActivity {
         }
         else{
             //Update Info
-            Toast.makeText(getApplicationContext(), "OK", Toast.LENGTH_SHORT).show();
+            ApiService.apiService.updateUser(user).enqueue(new Callback<Result>() {
+                @Override
+                public void onResponse(Call<Result> call, Response<Result> response) {
+                    String result = response.body().getMessage();
+                    if(result.equals("Thành công")){
+                        Toast.makeText(getApplicationContext(), "Cập nhật thành công", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Toast.makeText(getApplicationContext(), "Cập nhật thất bại", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Result> call, Throwable t) {
+                    Toast.makeText(getApplicationContext(), "Lỗi kết nối"+ t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
     private void setDataForUser() {

@@ -56,8 +56,10 @@ public interface ApiService {
     @GET("coffees")
     Call<List<Coffee>> getListCoffee();
 
-    //coffees?n=name
-    @GET("coffees")
+    @GET("coffees/random_selection")
+    Call<List<Coffee>> getRandomSelection();
+
+    @GET("coffees")//coffees?n=name
     Call<List<Coffee>> searchCoffees(@Query("n") String name);
 
     @Headers({"Content-Type: application/json"})
@@ -67,4 +69,8 @@ public interface ApiService {
     @Headers({"Content-Type: application/json"})
     @POST("auth/login")
     Call<Member> login(@Body Login login);
+
+    @Headers({"Content-Type: application/json"})
+    @POST("users/update")
+    Call<Result> updateUser(@Body User login);
 }

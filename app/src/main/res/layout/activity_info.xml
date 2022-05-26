@@ -84,7 +84,7 @@
                    android:layout_marginTop="20dp"
                    android:hint="Số điện thoại"
                    app:endIconMode="clear_text"
-                   app:startIconDrawable="@mipmap/phone_24px_1">
+                   app:startIconDrawable="@mipmap/phone_36px">
 
                    <com.google.android.material.textfield.TextInputEditText
                        android:id="@+id/txtSoDienThoai"

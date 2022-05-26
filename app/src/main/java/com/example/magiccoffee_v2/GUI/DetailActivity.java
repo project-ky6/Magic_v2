@@ -15,12 +15,15 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.magiccoffee_v2.API.ApiService;
 import com.example.magiccoffee_v2.DTO.Cart;
 import com.example.magiccoffee_v2.DTO.CartItem;
 import com.example.magiccoffee_v2.DTO.Coffee;
 import com.example.magiccoffee_v2.DTO.Size;
 import com.example.magiccoffee_v2.DTO.Temper;
+import com.example.magiccoffee_v2.DTO.User;
 import com.example.magiccoffee_v2.DataLocal.DataLocalManager;
 import com.example.magiccoffee_v2.DataLocal.ImageInternalStorage;
 import com.example.magiccoffee_v2.R;
@@ -43,20 +46,25 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class DetailActivity extends AppCompatActivity {
 
-   private Button btnPlus, btnExcept, btnAddToCart;
-   private ImageButton imgBtnBack, imgBtnCart;
-   private ImageView imgAvt;
-   private TextView txtQuantity, txtName, txtPrice, txtTotalPrice;
-   private RadioButton btnNong, btnLanh, btnS, btnM, btnL;
+    private Button btnPlus, btnExcept, btnAddToCart;
+    private ImageButton imgBtnBack, imgBtnCart;
+    private ImageView imgAvt;
+    private TextView txtQuantity, txtName, txtPrice, txtTotalPrice;
+    private RadioButton btnNong, btnLanh, btnS, btnM, btnL;
 
-   private Coffee coffee;
-   private int totalPrice;
-   private String size = "S";
-   private String temper = "";
-   private int quantity = 0;
-
+    private Coffee coffee;
+    private int totalPrice;
+    private String size = "S";
+    private String temper = "";
+    private int quantity = 0;
+    private NumberFormat formatter;
+    public User user;
     private ShareButton shareButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +79,22 @@ public class DetailActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getBundleExtra("Data");
         coffee = (Coffee) bundle.getSerializable("Coffee");
 
-        findView();
+        FirebaseUser userFb = FirebaseAuth.getInstance().getCurrentUser();
+        ApiService.apiService.getUser(userFb.getUid()).enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                user = response.body();
+            }
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "Không thể kết nối đến server.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
+        formatter = NumberFormat.getCurrencyInstance();
+        initView();
         loadImage();
         shareFacebook();
         setData();
@@ -98,12 +121,8 @@ public class DetailActivity extends AppCompatActivity {
 
     private void setData() {
         txtName.setText(coffee.getName());
-
-        NumberFormat formatter = NumberFormat.getCurrencyInstance();
-        String moneyString = formatter.format(coffee.getPrice());
-
-        txtPrice.setText(moneyString);
-
+        String moneyPrice = formatter.format(coffee.getPrice());
+        txtPrice.setText(moneyPrice);
         if(coffee.getTemper().size() <= 1){
             btnNong.setVisibility(View.GONE);
             btnLanh.setVisibility(View.GONE);
@@ -124,12 +143,17 @@ public class DetailActivity extends AppCompatActivity {
                 btnL.setVisibility(View.VISIBLE);
             }
         }
+        totalPrice();
     }
 
     private void event() {
         imgBtnCart.setOnClickListener(view ->{
             // Chuyển activity từ detail -> cart
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("User", user);
+
             Intent intent = new Intent(DetailActivity.this, CartActivity.class);
+            intent.putExtra("Data", bundle);
             startActivity(intent);
         });
 
@@ -170,31 +194,39 @@ public class DetailActivity extends AppCompatActivity {
         });
         btnAddToCart.setOnClickListener(view -> {
 
-            checkQuantity();
-            checkSize();
-            checkTemper();
+            try{
+                if(quantity > 0){
+                    checkQuantity();
+                    checkSize();
+                    checkTemper();
 
-            String name = coffee.getName();
-            String image = coffee.getImageLink();
-            String cfId = coffee.getId();
-            CartItem cartItem = new CartItem(quantity, name, image, totalPrice, cfId, temper, size);
-            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    String name = coffee.getName();
+                    String image = coffee.getImageLink();
+                    String cfId = coffee.getId();
 
-            DataLocalManager.updateCart(cartItem, user.getUid(),"096985509");
+                    CartItem cartItem = new CartItem(quantity, name, image, totalPrice, cfId, temper, size);
+
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                    DataLocalManager.updateCart(cartItem, user.getUid(),"096985509");
+                    Toast.makeText(getApplicationContext(), "Thêm vào giỏ hàng thành công", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "Số lượng phải lớn hơn 0 mới được thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
+                }
+            }
+            catch (Exception ex){
+                Toast.makeText(getApplicationContext(), "Có lỗi xảy ra "+ ex.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+
         });
     }
 
     private void totalPrice() {
-
         checkQuantity();
-
         checkTemper();
-
         checkSize();
-
-
         totalPrice = coffee.getPrice();
-
         for (Size s: coffee.getSize()) {
             if(s.getNSize().equals(size))
                 totalPrice += Float.parseFloat(s.getNotePrice());
@@ -203,7 +235,8 @@ public class DetailActivity extends AppCompatActivity {
             if(t.getTpn().equals(temper))
                 totalPrice += Float.parseFloat(t.getNotePrice());
         }
-        txtTotalPrice.setText((totalPrice*quantity)+"");
+        String moneyTotal = formatter.format(totalPrice*quantity);
+        txtTotalPrice.setText(moneyTotal);
     }
 
     private void checkQuantity() {
@@ -233,7 +266,7 @@ public class DetailActivity extends AppCompatActivity {
             size = "L";
     }
 
-    private void findView() {
+    private void initView() {
         shareButton = findViewById(R.id.fb_share_button);
         btnNong = findViewById(R.id.btnNong);
         btnLanh = findViewById(R.id.btnLanh);

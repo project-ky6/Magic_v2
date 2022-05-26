@@ -24,7 +24,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@drawable/custom_button_toolbar"
-                android:src="@drawable/ic_baseline_arrow_back_24" />
+                android:src="@mipmap/back_52px" />
 
             <ImageButton
                 android:id="@+id/imgBtnCart"
@@ -33,7 +33,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginLeft="10dp"
                 android:background="@drawable/custom_button_toolbar"
-                android:src="@mipmap/cart_24px" />
+                android:src="@mipmap/icons8_shopping_cart_52px" />
 
         </RelativeLayout>
 

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.magiccoffee_v2.DTO.CartItem;
 import com.example.magiccoffee_v2.DataLocal.ImageInternalStorage;
+import com.example.magiccoffee_v2.GUI.my_interface.IClickItemCartListener;
 import com.example.magiccoffee_v2.R;
 
 import java.util.List;
@@ -22,10 +23,12 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartIt
 
     private List<CartItem> cartItems;
     private Context mContext;
+    private IClickItemCartListener listener;
 
-    public CartItemAdapter(List<CartItem> cartItems, Context context) {
+    public CartItemAdapter(List<CartItem> cartItems, Context context,  IClickItemCartListener listener){
         this.cartItems = cartItems;
         this.mContext = context;
+        this.listener = listener;
     }
 
     @NonNull
@@ -48,18 +51,22 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartIt
         holder.txtSize.setText("Size "+cartItem.getSize());
         holder.txtTemper.setText(cartItem.getTemper());
 
+        holder.btnIncrease.setOnClickListener(view -> {
+            int quantity = cartItem.getQuantity();
+            quantity ++;
+            cartItem.setQuantity(quantity);
+            holder.txtQuantily.setText(quantity+"");
+            listener.onClickItemCartPlus(position, quantity);
 
-        holder.btnIncrease.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                cartItem.setQuantity(cartItem.getQuantity()+1);
-            }
         });
-        holder.btnDecrease.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                cartItem.setQuantity(cartItem.getQuantity()-1);
+        holder.btnDecrease.setOnClickListener(view -> {
+            int quantity = cartItem.getQuantity();
+            if(quantity >= 1){
+                quantity --;
+                cartItem.setQuantity(quantity);
+                holder.txtQuantily.setText(quantity+"");
             }
+            listener.onClickItemCartLess(position, quantity);
         });
     }
 
@@ -70,13 +77,12 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartIt
             return 0;
         return cartItems.size();
     }
-
     public class CartItemViewHolder extends RecyclerView.ViewHolder{
         public ImageView imgCoffee;
         public TextView txtNameCf, txtSize, txtTemper;
         public TextView txtPrice;
         public TextView txtQuantily;
-        public Button btnDecrease, btnIncrease;
+        public ImageView btnDecrease, btnIncrease;
         public LinearLayout llLayout;;
 
         public CartItemViewHolder(@NonNull View itemView) {

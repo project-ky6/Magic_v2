@@ -7,9 +7,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.magiccoffee_v2.API.ApiService;
@@ -29,6 +31,7 @@ public class LoginMemberActivity extends AppCompatActivity {
     private TextInputEditText txtUsername, txtPass;
     private CheckBox cbAdmin;
     private TextInputLayout txtUsernameLayout, txtPasswordLayout;
+    private RelativeLayout loading;
     //    Override
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,10 +92,13 @@ public class LoginMemberActivity extends AppCompatActivity {
         cbAdmin = findViewById(R.id.cbAdmin);
         txtUsernameLayout = findViewById(R.id.txtUsernameLayout);
         txtPasswordLayout = findViewById(R.id.txtPassLayout);
+        loading = findViewById(R.id.loading);
     }
     private void login() {
 
         if(validateUsername() && validatePassword() && validateCheckbox()){
+            loading.setVisibility(View.VISIBLE);
+
             String username = txtUsername.getText().toString();
             String password = txtPass.getText().toString();
 
@@ -106,11 +112,13 @@ public class LoginMemberActivity extends AppCompatActivity {
                         updateUI();
                     }
                     else{
+                        loading.setVisibility(View.GONE);
                         Toast.makeText(getApplicationContext(), "Tài khoản hoặc mật khẩu không chính xác!", Toast.LENGTH_SHORT).show();
                     }
                 }
                 @Override
                 public void onFailure(Call<Member> call, Throwable t) {
+                    loading.setVisibility(View.GONE);
                     Toast.makeText(getApplicationContext(), "Không thể đăng nhập! Vui lòng thử lại sau", Toast.LENGTH_SHORT).show();
                 }
             });
@@ -142,7 +150,6 @@ public class LoginMemberActivity extends AppCompatActivity {
         if (!cbAdmin.isChecked()){
             cbAdmin.setError("Bạn không phải là nhân viên");
             return false;
-
         }
         return true;
     }

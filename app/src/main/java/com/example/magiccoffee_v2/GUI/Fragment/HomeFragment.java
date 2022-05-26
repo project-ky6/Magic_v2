@@ -16,7 +16,9 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
+import com.example.magiccoffee_v2.API.ApiService;
 import com.example.magiccoffee_v2.DTO.Coffee;
 import com.example.magiccoffee_v2.DTO.User;
 import com.example.magiccoffee_v2.GUI.Adapter.CoffeeAdapter;
@@ -26,6 +28,11 @@ import com.example.magiccoffee_v2.GUI.SearchActivity;
 import com.example.magiccoffee_v2.R;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HomeFragment extends Fragment {
     private Toolbar toolbar;
@@ -34,7 +41,7 @@ public class HomeFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private CardView cardView;
-
+    private List<Coffee> coffees;
     CoffeeAdapter coffeeAdapter;
     LinearLayoutManager HorizontalLayout ;
     private User user;
@@ -53,6 +60,9 @@ public class HomeFragment extends Fragment {
             window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
             window.setStatusBarColor(this.getResources().getColor(R.color.white));
         }
+
+
+
         findView(view);
         setAdapter();
         event();
@@ -64,13 +74,24 @@ public class HomeFragment extends Fragment {
 
         return view;
     }
-
     private void setAdapter() {
-        ArrayList<Coffee> coffees = getListCoffee();
+        coffees = new ArrayList<Coffee>();
         coffeeAdapter = new CoffeeAdapter(getContext(),coffees, false);
         HorizontalLayout = new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false);
         recyclerView.setLayoutManager(HorizontalLayout);
         recyclerView.setAdapter(coffeeAdapter);
+
+        ApiService.apiService.getRandomSelection().enqueue(new Callback<List<Coffee>>() {
+            @Override
+            public void onResponse(Call<List<Coffee>> call, Response<List<Coffee>> response) {
+                coffees.addAll(response.body());
+                coffeeAdapter.notifyDataSetChanged();
+            }
+            @Override
+            public void onFailure(Call<List<Coffee>> call, Throwable t) {
+                Toast.makeText(getContext(), "Lỗi kết nối", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void findView(View view) {
@@ -82,19 +103,7 @@ public class HomeFragment extends Fragment {
         imgBtnSearch = view.findViewById(R.id.imgBtnSearch);
     }
 
-    private ArrayList<Coffee> getListCoffee() {
-        ArrayList<Coffee> al = new ArrayList<>();
-
-        al.add(new Coffee("Phin Sữa đá", "dqw", 29000 ));
-        al.add(new Coffee("Phin Đen đá", "dqwd", 29000 ));
-        al.add(new Coffee("Bạc Xỉu", "dw", 29000 ));
-        al.add(new Coffee("Phin Sữa Nóng", "dwqd", 29000 ));
-        al.add(new Coffee("Phin Đen Nóng", "dqwd", 29000 ));
-
-        return al;
-    }
-
-    private void event(){
+       private void event(){
         imgBtnSearch.setOnClickListener(view -> {
             Intent intent = new Intent(getContext(), SearchActivity.class);
             startActivity(intent);

@@ -5,7 +5,7 @@
         android:icon="@mipmap/home_24px_2"
         android:title="Trang chủ"/>
     <item android:id="@+id/mnProduct"
-        android:icon="@mipmap/menu_24px_1"
+        android:icon="@mipmap/marker_24px"
         android:title="Sản phẩm"/>
     <item
         android:id="@+id/mnHeart"

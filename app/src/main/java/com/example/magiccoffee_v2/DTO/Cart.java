@@ -106,6 +106,14 @@ public class Cart {
 
     private String PhoneNumber;
 
+    public void updateTotalPrice(){
+        int totalPrice = 0;
+        for(CartItem cartItem: Items){
+            totalPrice += (cartItem.getPrice() * cartItem.getQuantity());
+        }
+        Price = totalPrice+"";
+    }
+
     public void addItem(CartItem item){
         for(CartItem cartItem: Items){
             if(cartItem.getCfId().equals(item.getCfId())){

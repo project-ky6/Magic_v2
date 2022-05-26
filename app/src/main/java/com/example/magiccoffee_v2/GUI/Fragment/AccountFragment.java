@@ -18,11 +18,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.magiccoffee_v2.DTO.User;
+import com.example.magiccoffee_v2.GUI.CartActivity;
 import com.example.magiccoffee_v2.GUI.CustomDialogClass;
 import com.example.magiccoffee_v2.GUI.Login.InfoActivity;
 import com.example.magiccoffee_v2.GUI.Login.LoginActivity;
 import com.example.magiccoffee_v2.GUI.MapsActivity;
 import com.example.magiccoffee_v2.GUI.Static.RequestCode;
+import com.example.magiccoffee_v2.GUI.Utils;
 import com.example.magiccoffee_v2.R;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,36 +37,30 @@ public class AccountFragment extends Fragment {
     private Button btnMap, btnCart;
     private User user;
     private Button btnLogout;
-    private String filename = "Uid.txt";
     private Button btnUpdateInfo;
-
-
 
     public AccountFragment(User user) {
         this.user = user;
-
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_account, container, false);
-        findView(view);
+        initView(view);
 
         if (Build.VERSION.SDK_INT >= 21) {
             Window window = this.getActivity().getWindow();
             window.setStatusBarColor(this.getResources().getColor(R.color.primary));
         }
-
-        event();
+        initEvent();
 
         if(user.getUid() != null){
             txtName.setText(user.getName().toString());
         }
         return view;
     }
-    private void event() {
+    private void initEvent() {
         btnMap.setOnClickListener(view -> {
             startActivity(new Intent(getContext(), MapsActivity.class));
         });
@@ -86,12 +82,12 @@ public class AccountFragment extends Fragment {
             getActivity().finish();
         });
         btnCart.setOnClickListener(view -> {
-            CustomDialogClass cdc = new CustomDialogClass(getContext());
-            cdc.show();
+            Intent intent = new Intent(getContext(), CartActivity.class);
+            startActivity(intent);
         });
 
     }
-    private void findView(@NonNull View view) {
+    private void initView(@NonNull View view) {
         btnMap = view.findViewById(R.id.btnMap);
         txtName = view.findViewById(R.id.txtName);
         btnLogout = view.findViewById(R.id.btnLogout);
@@ -101,7 +97,7 @@ public class AccountFragment extends Fragment {
     private void writeData(String data){
         try
         {
-            FileOutputStream fos = getActivity().openFileOutput(filename, Context.MODE_PRIVATE);
+            FileOutputStream fos = getActivity().openFileOutput(Utils.FILE_UID, Context.MODE_PRIVATE);
             fos.write(data.getBytes());
             fos.flush();
             fos.close();

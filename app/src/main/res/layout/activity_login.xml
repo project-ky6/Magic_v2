@@ -37,7 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <Button
-        android:drawableLeft="@mipmap/phone_24px_1"
+        android:drawableLeft="@mipmap/phone_36px"
         android:id="@+id/btnLoginPhone"
         android:layout_marginTop="70dp"
         android:paddingVertical="10dp"
@@ -47,7 +47,7 @@
         android:layout_height="wrap_content"
         android:text="Tiếp tục với số điện thoại" />
     <Button
-        android:drawableLeft="@mipmap/google_24px"
+        android:drawableLeft="@mipmap/google_36px"
         android:id="@+id/btnLoginGoogle"
         android:layout_marginTop="10dp"
         app:backgroundTint="@null"
@@ -58,7 +58,7 @@
         android:layout_height="wrap_content"
         android:text="Tiếp tục với google" />
     <Button
-        android:drawableLeft="@mipmap/facebook_24px"
+        android:drawableLeft="@mipmap/facebook_36px"
         android:id="@+id/btnLoginFacebook"
         android:layout_marginTop="10dp"
         app:backgroundTint="@null"
@@ -83,5 +83,5 @@
         android:id="@+id/loading"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        layout="@layout/loading"/>
+        layout="@layout/loading0_5"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

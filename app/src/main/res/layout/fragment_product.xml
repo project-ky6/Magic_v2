@@ -53,7 +53,7 @@
                     </LinearLayout>
                     <ImageView
                         android:layout_gravity="center"
-                        android:src="@mipmap/search_24px_1"
+                        android:src="@mipmap/secured_letter_24px_1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>

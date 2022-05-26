@@ -9,8 +9,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,6 +47,7 @@ public class VerificationActivity extends AppCompatActivity {
     private Button btnNext;
     private String filename = "Uid.txt";
     private PinView pinView;
+    private RelativeLayout loading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,17 +59,14 @@ public class VerificationActivity extends AppCompatActivity {
         }
 
         findView();
-
         sendOTP();
-
         event();
-
-
     }
 
     private void event() {
         btnNext.setOnClickListener(view ->{
             if(validatePinView()){
+                loading.setVisibility(View.VISIBLE);
                 PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, pinView.getText().toString());
                 signInWithPhoneAuthCredential(credential);
             }
@@ -140,6 +140,7 @@ public class VerificationActivity extends AppCompatActivity {
         btnNext = findViewById(R.id.btnNext);
         txtPhoneNumber = findViewById(R.id.txtPhoneNumber);
         pinView = findViewById(R.id.firstPinView);
+        loading = findViewById(R.id.loading);
     }
 
     private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
@@ -188,6 +189,7 @@ public class VerificationActivity extends AppCompatActivity {
                                 }
                             });
                         } else {
+                            loading.setVisibility(View.GONE);
                             pinView.setError("Mã không đúng");
                         }
                     }

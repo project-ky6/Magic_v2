@@ -39,7 +39,6 @@ public class BarcodeActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(com.example.magiccoffee_v2.R.layout.activity_barcode);
         initViews();
-
     }
 
     private void initViews() {
@@ -124,7 +123,6 @@ public class BarcodeActivity extends AppCompatActivity{
         super.onPause();
         cameraSource.release();
     }
-
     @Override
     protected void onResume() {
         super.onResume();

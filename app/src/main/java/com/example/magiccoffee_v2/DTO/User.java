@@ -8,13 +8,6 @@ public class User implements Serializable {
     public User() {
     }
 
-    public String getDocID() {
-        return DocID;
-    }
-
-    public void setDocID(String docID) {
-        this.DocID = docID;
-    }
 
     public String getUid() {
         return Uid;
@@ -57,8 +50,8 @@ public class User implements Serializable {
     }
 
 
-    public User(String docID, String uid, String name, boolean isMember, String phoneNumber, String email, List<OrderInfo> orderInfos) {
-        DocID = docID;
+    public User(String id, String uid, String name, boolean isMember, String phoneNumber, String email, List<OrderInfo> orderInfos) {
+        this.id = id;
         Uid = uid;
         Name = name;
         IsMember = isMember;
@@ -86,7 +79,16 @@ public class User implements Serializable {
         PhoneNumber = phoneNumber;
         Email = email;
     }
-    private String DocID;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    private String id;
     private String Uid;
     private String Name;
     private boolean IsMember;

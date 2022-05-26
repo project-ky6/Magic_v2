@@ -71,20 +71,19 @@
 
         </LinearLayout>
         <LinearLayout
+            android:layout_marginTop="5dp"
             android:layout_width="wrap_content"
             android:layout_centerVertical="true"
-            android:background="@drawable/custom_button_toolbar"
             android:layout_height="wrap_content">
-            <Button
+            <ImageButton
                 android:id="@+id/btnExcept"
                 android:background="@color/no_color"
                 app:backgroundTint="@null"
-                android:text="-"
+                android:src="@mipmap/minus_36px"
                 android:textColor="@color/black"
                 android:layout_gravity="center"
-                android:layout_width="50dp"
-                android:textSize="18dp"
-                android:layout_height="40dp"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
             <TextView
                 android:id="@+id/txtQuantity"
                 android:text="1"
@@ -94,16 +93,15 @@
                 android:paddingHorizontal="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
-
-            <Button
+            <ImageButton
                 android:id="@+id/btnPlus"
-                android:layout_width="55dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
                 android:background="@color/no_color"
-                android:text="+"
+                app:backgroundTint="@null"
+                android:src="@mipmap/plus_36px"
                 android:textColor="@color/black"
-                android:textSize="18dp" />
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

@@ -34,32 +34,35 @@ public class WellcomeActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-//                String Uid = Utils.readData(getApplicationContext(), Utils.FILE_UID);
-//                if(Uid != null){
-//                    if(!Uid.equals("")){
-//                        ApiService.apiService.getUser(Uid).enqueue(new Callback<User>() {
-//                            @Override
-//                            public void onResponse(Call<User> call, Response<User> response) {
-//                                User user1 = response.body();
-//                                //Nếu đã tồn tại đi vào trang chủ
-//                                Bundle bundle2 = new Bundle();
-//                                bundle2.putSerializable("User", user1);
-//                                Intent intent2 = new Intent(WellcomeActivity.this, MainActivity.class);
-//                                intent2.putExtra("Data", bundle2);
-//                                startActivity(intent2);
-//                                finish();
-//                            }
-//                            @Override
-//                            public void onFailure(Call<User> call, Throwable t) {
-//                                Toast.makeText(getApplicationContext(), "Không thể kết nối đến server.", Toast.LENGTH_SHORT).show();
-//                            }
-//                        });
-//                    }
-//                }
-//                else {
+                String Uid = Utils.readData(getApplicationContext(), Utils.FILE_UID);
+                if(Uid != null){
+                    if(!Uid.equals("")){
+                        ApiService.apiService.getUser(Uid).enqueue(new Callback<User>() {
+                            @Override
+                            public void onResponse(Call<User> call, Response<User> response) {
+                                User user1 = response.body();
+                                //Nếu đã tồn tại đi vào trang chủ
+                                Bundle bundle2 = new Bundle();
+                                bundle2.putSerializable("User", user1);
+                                Intent intent2 = new Intent(WellcomeActivity.this, MainActivity.class);
+                                intent2.putExtra("Data", bundle2);
+                                startActivity(intent2);
+                                finish();
+                            }
+                            @Override
+                            public void onFailure(Call<User> call, Throwable t) {
+                                Toast.makeText(getApplicationContext(), "Không thể kết nối đến server.", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    } else {
+                        startActivity(new Intent(WellcomeActivity.this, LoginActivity.class));
+                        finish();
+                    }
+                }
+                else {
                     startActivity(new Intent(WellcomeActivity.this, LoginActivity.class));
                     finish();
-//                }
+                }
             }
         }, 500);
     }
