@@ -5,25 +5,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".GUI.WellcomeActivity">
+    tools:context=".gui.WellcomeActivity">
 
-    <TextView
-        android:id="@+id/app_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <LinearLayout
+        android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="@string/title_app"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="30dp" />
-
-    <TextView
-        android:textColor="@color/black"
-        android:textAlignment="center"
-        android:text="Kính chào quý khách"
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/app_name"
-        android:textSize="16dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/logo"
+            android:layout_width="150dp"
+            android:layout_gravity="center"
+            android:layout_height="150dp"/>
+        <TextView
+            android:id="@+id/app_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_app"
+            android:textAlignment="center"
+            android:textColor="@color/color_text"
+            android:textSize="30dp" />
+    </LinearLayout>
 </RelativeLayout>

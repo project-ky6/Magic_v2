@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.magiccoffee_v2" >
+    package="com.example.magiccoffee_v2">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.USE_FINGERPRINT" /><!-- Xác thực vân tay -->
     <uses-permission
         android:name="com.google.android.gms.permission.AD_ID"
         tools:node="remove" />
@@ -20,14 +21,33 @@
         android:required="false" />
 
     <application
+        android:name=".gui.MyApplication"
         android:allowBackup="true"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MagicCoffee_v2" >
+        android:theme="@style/Theme.MagicCoffee_v2">
+
+        <service
+            android:name=".fcm.MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
         <activity
-            android:name=".GUI.Drawer.DetailCartActivity"
+            android:name=".gui.HistoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".gui.admin.OrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".gui.admin.SettingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".gui.admin.DetailCartActivity"
             android:exported="false" />
 
         <meta-data
@@ -43,15 +63,15 @@
             android:exported="true" />
 
         <activity
-            android:name=".GUI.Drawer.AdminActivity"
+            android:name=".gui.admin.AdminActivity"
             android:exported="false"
             android:label="@string/title_activity_admin"
             android:theme="@style/Theme.MagicCoffee_v2.NoActionBar" />
         <activity
-            android:name=".GUI.BarcodeActivity"
+            android:name=".gui.BarcodeActivity"
             android:exported="false" />
         <activity
-            android:name=".GUI.DetailActivity"
+            android:name=".gui.DetailActivity"
             android:exported="false" />
 
         <meta-data
@@ -59,35 +79,32 @@
             android:value="@string/maps_api_key" />
 
         <activity
-            android:name=".GUI.Login.VerificationActivity"
+            android:name=".gui.login.VerificationActivity"
             android:exported="false" />
         <activity
-            android:name=".GUI.CartActivity"
+            android:name=".gui.CartActivity"
             android:exported="false" />
         <activity
-            android:name=".GUI.SearchActivity"
+            android:name=".gui.SearchActivity"
             android:exported="false" />
         <activity
-            android:name=".GUI.Login.InfoActivity"
+            android:name=".gui.login.InfoActivity"
             android:exported="false" />
         <activity
-            android:name=".GUI.Login.LoginPhoneNumberActivity"
+            android:name=".gui.login.LoginMemberActivity"
             android:exported="false" />
         <activity
-            android:name=".GUI.Login.LoginMemberActivity"
+            android:name=".gui.login.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".GUI.Login.LoginActivity"
+            android:name=".gui.MapsActivity"
             android:exported="false" />
         <activity
-            android:name=".GUI.MapsActivity"
+            android:name=".gui.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".GUI.MainActivity"
-            android:exported="false" />
-        <activity
-            android:name=".GUI.WellcomeActivity"
-            android:exported="true" >
+            android:name=".gui.WellcomeActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

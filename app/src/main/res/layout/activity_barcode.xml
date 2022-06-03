@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/toolbar"
-    tools:context=".GUI.CartActivity">
+    tools:context=".gui.CartActivity">
 
     <LinearLayout
         android:orientation="vertical"
@@ -23,7 +23,7 @@
                 android:layout_gravity="center"
                 android:background="@null"
                 app:backgroundTint="@null"
-                android:src="@drawable/ic_baseline_arrow_back_24"
+                android:src="@mipmap/back_52px"
                 android:layout_width="50dp"
                 android:layout_height="50dp"/>
             <TextView

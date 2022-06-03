@@ -14,7 +14,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:scaleType="centerCrop"
-        app:srcCompat="@mipmap/av2" />
+        app:srcCompat="@mipmap/coffee_to_go_100px" />
 
     <LinearLayout
         android:layout_weight="1"
@@ -24,7 +24,9 @@
         android:orientation="vertical">
 
         <TextView
+            android:paddingTop="10dp"
             android:id="@+id/txtSDT"
+            android:layout_marginBottom="6dp"
             android:layout_width="match_parent"
             android:layout_height="32dp"
             android:textColor="@color/black"
@@ -38,22 +40,21 @@
             android:textColor="@color/black"
             android:textSize="16dp"
             android:layout_height="29dp"
-            android:text="TextView" />
+            android:text="Thời gian nhận: 18:20" />
         <TextView
             android:id="@+id/txtPrice"
             android:layout_width="match_parent"
             android:textColor="@color/black"
             android:textSize="16dp"
             android:layout_height="29dp"
-            android:text="TextView" />
+            android:text="Tổng tiền: 300.000 đ" />
     </LinearLayout>
 
-    <ImageButton
+    <ImageView
         android:padding="15dp"
         android:layout_gravity="center"
-        android:id="@+id/btnConfirm"
+        android:id="@+id/imgStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/home_24px_2" />
-
+        app:srcCompat="@mipmap/c_red" />
 </LinearLayout>

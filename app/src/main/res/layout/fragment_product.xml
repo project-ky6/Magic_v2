@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="GUI.Fragment.ProductFragment">
+    tools:context="gui.fragment.ProductFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,38 +22,39 @@
                 android:layout_height="wrap_content">
                 <LinearLayout
                     android:id="@+id/llButton"
-                    android:orientation="horizontal"
+                    android:orientation="vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
-                    <ImageView
-                        android:layout_gravity="center"
-                        android:src="@mipmap/marker_24px"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+
                     <LinearLayout
-                        android:paddingHorizontal="5dp"
-                        android:orientation="vertical"
+                        android:orientation="horizontal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
-                        <TextView
-                            android:text="Nhận món tại"
-                            android:textSize="18dp"
-                            android:textColor="@color/black"
-                            android:textStyle="bold"
+                        <ImageView
                             android:layout_gravity="center"
+                            android:src="@mipmap/dl_coffee_36"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"/>
+                        <TextView
+                            android:text="Đến lấy tại"
+                            android:textSize="14dp"
+                            android:paddingHorizontal="7dp"
+                            android:textColor="@color/color_icon"
+                            android:textStyle="bold"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
-                        <TextView
-                            android:text="370 Tân Sơn Nhì"
-                            android:textSize="16dp"
-                            android:textColor="@color/black"
+                        <ImageView
                             android:layout_gravity="center"
+                            android:src="@mipmap/chevron_down_20"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
                     </LinearLayout>
-                    <ImageView
+                    <TextView
+                        android:id="@+id/txtAddress"
+                        android:text="370 Tân Sơn Nhì"
+                        android:textSize="16dp"
+                        android:textColor="@color/black"
                         android:layout_gravity="center"
-                        android:src="@mipmap/secured_letter_24px_1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
@@ -96,6 +97,5 @@
                 />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
     </LinearLayout>
-</FrameLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

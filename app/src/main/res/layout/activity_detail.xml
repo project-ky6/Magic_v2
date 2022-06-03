@@ -5,7 +5,7 @@
     android:id="@+id/ctLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GUI.DetailActivity">
+    tools:context=".gui.DetailActivity">
     <ImageView
         android:id="@+id/imgAv"
         android:scaleType="centerCrop"
@@ -16,7 +16,7 @@
         <RelativeLayout
             android:padding="10dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginRight="15dp">
 
             <ImageButton
@@ -24,7 +24,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@drawable/custom_button_toolbar"
-                android:src="@mipmap/back_52px" />
+                android:src="@mipmap/back_56" />
 
             <ImageButton
                 android:id="@+id/imgBtnCart"
@@ -33,253 +33,317 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginLeft="10dp"
                 android:background="@drawable/custom_button_toolbar"
-                android:src="@mipmap/icons8_shopping_cart_52px" />
+                android:src="@mipmap/shopping_cart_56" />
 
         </RelativeLayout>
 
     <LinearLayout
-        android:layout_marginTop="230dp"
+        android:layout_marginTop="250dp"
         android:id="@+id/lLayout"
+        android:orientation="vertical"
+        android:background="@drawable/custom_border_layout_rd"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
        >
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:backgroundTint="@color/white"
-            app:cardBackgroundColor="#FFFFFF"
-            app:cardCornerRadius="25dp">
-
-            <RelativeLayout
+            <ScrollView
+                android:layout_weight="1"
                 android:layout_width="match_parent"
+                android:paddingBottom="15dp"
                 android:layout_height="match_parent">
-
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:paddingHorizontal="20dp"
-                    android:paddingVertical="20dp">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:id="@+id/txtName"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:text="Phin sữa đá"
-                            android:textColor="@color/black"
-                            android:textSize="20dp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/txtPrice"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_centerVertical="true"
-                            android:text="49.000đ"
-                            android:textColor="@color/black"
-                            android:textSize="16dp" />
-                    </RelativeLayout>
-                    <com.facebook.share.widget.ShareButton
-                        android:id="@+id/fb_share_button"
-                        android:layout_marginTop="10dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginVertical="10dp"
-                        android:text="Lưu ý: Mỗi size và nóng lạnh sẽ có giá tiền khác nhau"
-                        android:textColor="@color/black"
-                        android:textSize="16dp" />
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp">
-
-                        <RadioGroup
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
-                            android:orientation="horizontal"
-                            android:padding="@dimen/activity_horizontal_margin">
-
-                            <RadioButton
-                                android:id="@+id/btnS"
-                                android:layout_width="70dp"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/radio_selector"
-                                android:button="@android:color/transparent"
-                                android:elevation="4dp"
-                                android:text="S"
-                                android:textAlignment="center"
-                                android:textColor="@drawable/text_color" />
-
-                            <RadioButton
-                                android:id="@+id/btnM"
-                                android:layout_width="70dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="25dp"
-                                android:background="@drawable/radio_selector"
-                                android:button="@android:color/transparent"
-                                android:text="M"
-                                android:textAlignment="center"
-                                android:textColor="@drawable/text_color" />
-
-                            <RadioButton
-                                android:id="@+id/btnL"
-                                android:layout_width="70dp"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/radio_selector"
-                                android:button="@android:color/transparent"
-                                android:text="L"
-                                android:textAlignment="center"
-                                android:textColor="@drawable/text_color" />
-                        </RadioGroup>
-                    </RelativeLayout>
-
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp">
-
-                        <RadioGroup
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
-                            android:orientation="horizontal"
-                            android:padding="@dimen/activity_horizontal_margin">
-
-                            <RadioButton
-                                android:id="@+id/btnNong"
-                                android:layout_width="70dp"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/radio_selector"
-                                android:button="@android:color/transparent"
-                                android:elevation="4dp"
-                                android:text=" Nóng"
-                                android:textAlignment="center"
-                                android:textColor="@drawable/text_color" />
-
-                            <RadioButton
-                                android:id="@+id/btnLanh"
-                                android:layout_width="70dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="25dp"
-                                android:background="@drawable/radio_selector"
-                                android:button="@android:color/transparent"
-                                android:text="Đá"
-                                android:textAlignment="center"
-                                android:textColor="@drawable/text_color" />
-                        </RadioGroup>
-                    </RelativeLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:gravity="center"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_above="@+id/llBottom"
-                    android:layout_marginBottom="10dp"
-                    android:paddingHorizontal="10dp">
+                    android:layout_height="match_parent">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Tổng tiền:"
-                        android:textColor="@color/black"
-                        android:textSize="16dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/txtTotalPrice"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:text="40.000"
-                        android:textColor="@color/black"
-                        android:textSize="16dp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/llBottom"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true">
-
-                    <androidx.cardview.widget.CardView
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/gray"
-                        app:cardBackgroundColor="#F1F1F1"
-                        app:cardCornerRadius="30dp"
-                        app:cardElevation="0dp"
-                        app:cardUseCompatPadding="true">
+                        android:background="@color/color_background"
+                        android:orientation="vertical">
 
-                        <RelativeLayout
+                        <LinearLayout
+                            android:padding="15dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:padding="20dp">
+                            android:background="@color/white"
+                            android:orientation="vertical">
 
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:background="@drawable/custom_button_toolbar"
-                                android:layout_height="wrap_content">
-                                <Button
-                                    android:id="@+id/btnExcept"
-                                    android:background="@color/no_color"
-                                    app:backgroundTint="@null"
-                                    android:text="-"
-                                    android:textColor="@color/black"
-                                    android:layout_width="40dp"
-                                    android:textSize="18dp"
-                                    android:layout_height="50dp"/>
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
                                 <TextView
-                                    android:id="@+id/txtQuantity"
-                                    android:text="1"
-                                    android:textSize="16dp"
-                                    android:textColor="@color/black"
-                                    android:paddingHorizontal="10dp"
+                                    android:id="@+id/txtName"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"/>
-                                <Button
-                                    android:id="@+id/btnPlus"
-                                    android:background="@color/no_color"
-                                    android:text="+"
-                                    android:textSize="18dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:text="Phin sữa đá"
                                     android:textColor="@color/black"
-                                    android:layout_width="40dp"
-                                    android:layout_height="50dp"/>
-                            </LinearLayout>
+                                    android:textSize="22dp"
+                                    android:textStyle="bold" />
 
-                            <Button
-                                android:id="@+id/btnAddToCart"
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_centerVertical="true"
+                                    android:src="@mipmap/heart_40" />
+                            </RelativeLayout>
+
+                            <TextView
+                                android:id="@+id/txtPrice"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="true"
-                                android:layout_centerVertical="true"
-                                android:background="@drawable/custom_button_toolbar"
-                                android:paddingVertical="12dp"
-                                android:text="Thêm vào giỏ hàng"
-                                app:backgroundTint="@null" />
+                                android:text="49.000đ"
+                                android:textColor="@color/black"
+                                android:textSize="16dp" />
 
-                        </RelativeLayout>
-                    </androidx.cardview.widget.CardView>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginVertical="10dp"
+                                android:text="Lưu ý: Mỗi size và nóng lạnh sẽ có giá tiền khác nhau"
+                                android:textColor="@color/black"
+                                android:textSize="14dp" />
+                        </LinearLayout>
 
+                        <LinearLayout
+                            android:padding="15dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@color/white"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <com.facebook.share.widget.ShareButton
+                                android:id="@+id/fb_share_button"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:padding="15dp"
+
+                            android:background="@color/white"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Size"
+                                android:textColor="@color/black"
+                                android:textSize="16dp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginVertical="5dp"
+                                android:text="Chọn 1 loại size"
+                                android:textColor="@color/black"
+                                android:textSize="14dp" />
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/custom_border_bottom"
+                                android:orientation="horizontal">
+
+                                <RadioButton
+                                    android:id="@+id/btnS"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Nhỏ"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/black" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="49.000đ"
+                                    android:textAlignment="textEnd"
+                                    android:textColor="@color/black"
+                                    android:textSize="16dp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/custom_border_bottom"
+                                android:orientation="horizontal">
+
+                                <RadioButton
+                                    android:id="@+id/btnM"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Vừa"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/black" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="49.000đ"
+                                    android:textAlignment="textEnd"
+                                    android:textColor="@color/black"
+                                    android:textSize="16dp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <RadioButton
+                                    android:id="@+id/btnL"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Lớn"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/black" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="49.000đ"
+                                    android:textAlignment="textEnd"
+                                    android:textColor="@color/black"
+                                    android:textSize="16dp" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:padding="15dp"
+                            android:background="@color/white"
+                            android:id="@+id/llLayout_loai"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="10dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Loại"
+                                android:textColor="@color/black"
+                                android:textSize="16dp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginVertical="5dp"
+                                android:text="Chọn 1 loại"
+                                android:textColor="@color/black"
+                                android:textSize="14dp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/custom_border_bottom"
+                                android:orientation="horizontal">
+
+                                <RadioButton
+                                    android:id="@+id/btnLanh"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Đá"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/black" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="49.000đ"
+                                    android:textAlignment="textEnd"
+                                    android:textColor="@color/black"
+                                    android:textSize="16dp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <RadioButton
+                                    android:id="@+id/btnNong"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Nóng"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/black" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="49.000đ"
+                                    android:textAlignment="textEnd"
+                                    android:textColor="@color/black"
+                                    android:textSize="16dp" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
                 </LinearLayout>
-            </RelativeLayout>
-        </androidx.cardview.widget.CardView>
+            </ScrollView>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingBottom="10dp"
+            android:paddingHorizontal="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:background="@drawable/custom_button_toolbar"
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/btnExcept"
+                    android:background="@color/no_color"
+                    app:backgroundTint="@null"
+                    android:text="-"
+                    android:textColor="@color/black"
+                    android:layout_width="40dp"
+                    android:textSize="18dp"
+                    android:layout_height="50dp"/>
+                <TextView
+                    android:id="@+id/txtQuantity"
+                    android:text="1"
+                    android:textSize="16dp"
+                    android:textColor="@color/black"
+                    android:paddingHorizontal="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <Button
+                    android:id="@+id/btnPlus"
+                    android:background="@color/no_color"
+                    android:text="+"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"/>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnAddToCart"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_marginLeft="30dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/custom_button_toolbar"
+                android:paddingVertical="12dp"
+                android:text="Thêm vào giỏ hàng"
+                app:backgroundTint="@null" />
+        </LinearLayout>
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

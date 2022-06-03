@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".GUI.Login.LoginActivity">
+    tools:context=".gui.login.LoginActivity">
 
     <LinearLayout
         android:padding="20dp"
@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <ImageView
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="30dp"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center"
@@ -41,8 +41,9 @@
             android:id="@+id/txtUsernameLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="60dp"
             android:hint="Tên đăng nhập"
+            app:boxStrokeColor="@color/primary"
             app:endIconMode="clear_text"
             app:startIconDrawable="@mipmap/user_24px_1">
 
@@ -59,8 +60,10 @@
             android:id="@+id/txtPassLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="20dp"
             android:hint="Mật khẩu"
+            app:boxStrokeColor="@color/primary"
+            app:counterTextColor="@color/primary"
             app:endIconMode="password_toggle"
             app:startIconDrawable="@mipmap/key_24px">
 
@@ -83,17 +86,38 @@
             android:textColor="@color/black"
             android:layout_height="wrap_content"/>
 
-        <Button
-            android:id="@+id/btnLogin"
+        <LinearLayout
             android:layout_marginTop="20dp"
-            app:backgroundTint="@null"
-            android:paddingVertical="12dp"
-            android:paddingHorizontal="40dp"
-            android:background="@drawable/custom_button"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Đăng nhập" />
+            android:gravity="center"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/btnLogin"
+                app:backgroundTint="@null"
+                android:backgroundTint="@color/primary"
+                android:paddingVertical="12dp"
+                android:paddingHorizontal="40dp"
+                android:background="@drawable/custom_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:text="Đăng nhập" />
+            <ImageButton
+                android:layout_marginLeft="10dp"
+                android:id="@+id/btnTouch"
+                app:backgroundTint="@null"
+                android:scaleType="center"
+                android:background="@color/white"
+                android:src="@mipmap/touch_id_320px"
+                android:paddingVertical="12dp"
+                android:paddingHorizontal="40dp"
+                android:layout_marginBottom="1dp"
+                android:layout_width="60dp"
+                android:layout_height="75dp"
+                android:layout_gravity="center" />
+        </LinearLayout>
+
     </LinearLayout>
     <include
         android:visibility="gone"

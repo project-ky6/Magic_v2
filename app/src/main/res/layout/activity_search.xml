@@ -5,57 +5,48 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".GUI.SearchActivity">
+    tools:context=".gui.SearchActivity">
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:backgroundTint="@color/primary"
+            android:backgroundTint="@color/white"
             android:layout_height="wrap_content">
             <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <ImageButton
-                    android:src="@mipmap/back_52px"
-                    android:layout_width="wrap_content"
-                    android:background="@null"
-                    android:layout_marginEnd="10dp"
-                    android:layout_height="wrap_content"/>
-                <androidx.appcompat.widget.SearchView
-                    android:id="@+id/search_vew_pr"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_centerInParent="true"
-                    app:iconifiedByDefault="false"
-                    android:background="@color/white"
-                    android:layout_marginEnd="16dp"
-                    app:defaultQueryHint="Tìm kiếm"/>
-
+               <LinearLayout
+                   android:orientation="horizontal"
+                   android:layout_width="match_parent"
+                   android:paddingVertical="10dp"
+                   android:layout_height="wrap_content">
+                   <EditText
+                       android:id="@+id/editSearch"
+                       android:padding="13dp"
+                       android:textSize="16dp"
+                       android:backgroundTint="@color/color_background"
+                       android:drawablePadding="10dp"
+                       android:drawableLeft="@mipmap/search_28"
+                       android:layout_weight="1"
+                       android:layout_gravity="center"
+                       android:hint="Tìm kiếm"
+                       android:background="@drawable/custom_border"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"/>
+                   <TextView
+                       android:id="@+id/txtClose"
+                       android:text="Đóng"
+                       android:layout_marginLeft="15dp"
+                       app:backgroundTint="@null"
+                       android:textStyle="bold"
+                       android:layout_marginRight="16dp"
+                       android:textColor="@color/black"
+                       android:layout_gravity="center"
+                       android:background="@color/white"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"/>
+               </LinearLayout>
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.AppBarLayout>
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            app:cardUseCompatPadding="true">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-                <TextView
-                    android:paddingLeft="2dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Suggestion key"
-                    android:textSize="16sp"/>
-                <me.gujun.android.taggroup.TagGroup
-                    android:padding="8dp"
-                    android:id="@+id/tag_group"
-                    app:atg_borderColor="@color/primary"
-                    app:atg_textColor="@color/primary_02"
-                    style="@style/TagGroup" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -67,3 +58,15 @@
             layout="@layout/loading"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>
+
+<!--<androidx.appcompat.widget.SearchView-->
+<!--android:id="@+id/search_vew_pr"-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="40dp"-->
+<!--android:gravity="center"-->
+<!--android:layout_centerInParent="true"-->
+<!--app:iconifiedByDefault="false"-->
+<!--android:background="@color/white"-->
+<!--android:layout_weight="1"-->
+<!--android:layout_marginEnd="16dp"-->
+<!--app:defaultQueryHint="Tìm kiếm"/>-->

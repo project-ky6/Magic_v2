@@ -6,20 +6,19 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@mipmap/home_30"
             android:title="@string/menu_home" />
         <item
-            android:id="@+id/nav_order"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Đơn hàng" />
-        <item
             android:id="@+id/nav_statistical"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@mipmap/static_views_30"
             android:title="Thống kê" />
-        <item
-            android:id="@+id/nav_logout"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Đăng xuất" />
     </group>
-
+    <item android:title="Khác">
+        <menu>
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@mipmap/logout_30"
+                android:title="Đăng xuất" />
+        </menu>
+    </item>
 </menu>
