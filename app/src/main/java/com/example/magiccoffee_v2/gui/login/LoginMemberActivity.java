@@ -172,7 +172,7 @@ public class LoginMemberActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<Member> call, Response<Member> response) {
                     Member member = response.body();
-                    if(member.getUid() != null){
+                    if(member.getId() != null){
                         updateUI(member);
                     }
                     else{

@@ -4,9 +4,8 @@ import java.io.Serializable;
 
 public class Member implements Serializable {
 
-    public Member(String id, String uid, String name, boolean isMember, String phoneNumber, String email, String username, String password) {
+    public Member(String id, String name, boolean isMember, String phoneNumber, String email, String username, String password) {
         this.id = id;
-        Uid = uid;
         Name = name;
         IsMember = isMember;
         PhoneNumber = phoneNumber;
@@ -17,14 +16,6 @@ public class Member implements Serializable {
 
     public Member() {
 
-    }
-
-    public String getUid() {
-        return Uid;
-    }
-
-    public void setUid(String uid) {
-        Uid = uid;
     }
 
     public String getName() {
@@ -84,7 +75,6 @@ public class Member implements Serializable {
     }
 
     private String id;
-    private String Uid;
     private String Name;
     private boolean IsMember;
     private String PhoneNumber;
