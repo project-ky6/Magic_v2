@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,8 +47,7 @@ public class StatisticalFragment extends Fragment {
     private RecyclerView recycler_view;
     private RelativeLayout loading, emptyCart;
     private TextView txtAll, txtCancel, txtComplete, txtQuantity, txtTotalPrice;
-
-
+    private LinearLayout bottom_sheet;
     private List<Cart> carts;
     private CartAdapter cartAdapter;
     private Member member;
@@ -116,6 +116,7 @@ public class StatisticalFragment extends Fragment {
         txtComplete = view.findViewById(R.id.txtComplete);
         txtQuantity = view.findViewById(R.id.txtQuantity);
         txtTotalPrice = view.findViewById(R.id.txtTotalPrice);
+        bottom_sheet = view.findViewById(R.id.bottom_sheet);
     }
     private void SetData(){
         int all = 0;
@@ -168,6 +169,7 @@ public class StatisticalFragment extends Fragment {
         String idNV = member.getId();
         loading.setVisibility(View.VISIBLE);
         emptyCart.setVisibility(View.GONE);
+        bottom_sheet.setVisibility(View.GONE);
         ApiService.apiService.statistical(idNV, date).enqueue(new Callback<List<Cart>>() {
             @Override
             public void onResponse(Call<List<Cart>> call, Response<List<Cart>> response) {
@@ -176,8 +178,13 @@ public class StatisticalFragment extends Fragment {
                 cartAdapter.notifyDataSetChanged();
                 loading.setVisibility(View.GONE);
                 SetData();
+
                 if(carts.size() == 0){
                     emptyCart.setVisibility(View.VISIBLE);
+                    bottom_sheet.setVisibility(View.GONE);
+                }
+                else {
+                    bottom_sheet.setVisibility(View.VISIBLE);
                 }
             }
 

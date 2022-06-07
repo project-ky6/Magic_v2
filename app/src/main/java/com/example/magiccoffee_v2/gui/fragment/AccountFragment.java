@@ -17,13 +17,17 @@ import android.widget.Button;
 
 import com.example.magiccoffee_v2.dto.ItemClick;
 import com.example.magiccoffee_v2.dto.User;
+import com.example.magiccoffee_v2.gui.CustomDialogClass;
 import com.example.magiccoffee_v2.gui.HistoryActivity;
 import com.example.magiccoffee_v2.gui.adapter.CustomListAdapter;
 import com.example.magiccoffee_v2.gui.CartActivity;
+import com.example.magiccoffee_v2.gui.admin.AdminActivity;
 import com.example.magiccoffee_v2.gui.login.InfoActivity;
 import com.example.magiccoffee_v2.gui.login.LoginActivity;
 import com.example.magiccoffee_v2.gui.MapsActivity;
 import com.example.magiccoffee_v2.gui.NonScrollListView;
+import com.example.magiccoffee_v2.gui.login.LoginMemberActivity;
+import com.example.magiccoffee_v2.gui.my_interface.IClickDialog;
 import com.example.magiccoffee_v2.gui.utils.RequestCode;
 import com.example.magiccoffee_v2.gui.utils.Utils;
 import com.example.magiccoffee_v2.R;
@@ -40,6 +44,7 @@ public class AccountFragment extends Fragment {
     private NonScrollListView lvAccount, lvHoTro;
     private List<ItemClick> listICAccount, listICHoTro;
     private Button btnOrderHistory;
+    private CustomDialogClass customDialogClass;
 
     public AccountFragment(User user) {
         this.user = user;
@@ -66,11 +71,7 @@ public class AccountFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> a, View v, int position, long id) {
                 if(position == listICAccount.size()-1){
-                    FirebaseAuth.getInstance().signOut();
-                    writeData("");
-                    Intent intent = new Intent(getContext(), LoginActivity.class);
-                    startActivity(intent);
-                    getActivity().finish();
+                    Logout();
                 }
             }
         });
@@ -80,7 +81,23 @@ public class AccountFragment extends Fragment {
 
         return view;
     }
-
+    private void Logout() {
+        customDialogClass = new CustomDialogClass(getContext(), new IClickDialog() {
+            @Override
+            public void onClickOk() {
+                FirebaseAuth.getInstance().signOut();
+                writeData("");
+                Intent intent = new Intent(getContext(), LoginActivity.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+            @Override
+            public void onClickCancel() {
+                customDialogClass.hide();
+            }
+        });
+        customDialogClass.show();
+    }
     private void InitEvent() {
         btnOrderHistory.setOnClickListener(vew->{
             Bundle bundle = new Bundle();

@@ -1,10 +1,12 @@
 package com.example.magiccoffee_v2.gui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.TimePickerDialog;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +14,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -24,9 +27,11 @@ import com.example.magiccoffee_v2.dto.Result;
 import com.example.magiccoffee_v2.dto.User;
 import com.example.magiccoffee_v2.gui.dataLocal.DataLocalManager;
 import com.example.magiccoffee_v2.gui.adapter.CartItemAdapter;
+import com.example.magiccoffee_v2.gui.my_interface.ItemTouchHelperListener;
 import com.example.magiccoffee_v2.gui.utils.RequestCode;
 import com.example.magiccoffee_v2.gui.my_interface.IClickItemCartListener;
 import com.example.magiccoffee_v2.R;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -37,14 +42,15 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CartActivity extends AppCompatActivity {
+public class CartActivity extends AppCompatActivity implements ItemTouchHelperListener {
 
     private RecyclerView recyclerView;
     private List<CartItem> cartItems;
     private RelativeLayout loading, emptyCart;
+    private LinearLayout llListItem;
     private ImageButton btnBack;
     private Button btnThanhToan;
-    private TextView txtTotalPrice,txtIntoMoney, txtIntoMoney2;
+    private TextView txtTotalPrice, txtIntoMoney2, txtAddress;
     private Cart cart;
     private NumberFormat formatter;
     private CartItemAdapter cartAdapter;
@@ -70,7 +76,6 @@ public class CartActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getBundleExtra("Data");
         user = (User) bundle.getSerializable("User");
 
-
         formatter = NumberFormat.getCurrencyInstance();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -83,6 +88,8 @@ public class CartActivity extends AppCompatActivity {
         });
         recyclerView.setAdapter(cartAdapter);
 
+        ItemTouchHelper.SimpleCallback simpleCallback = new RecyclerViewItemTouchHelper(0, ItemTouchHelper.LEFT, this);
+        new ItemTouchHelper(simpleCallback).attachToRecyclerView(recyclerView);
         GetAPI();
         InitEvent();
     }
@@ -233,12 +240,13 @@ public class CartActivity extends AppCompatActivity {
     }
 
     private void InitView() {
+        llListItem = findViewById(R.id.llListItem);
+        txtAddress = findViewById(R.id.txtAddress);
         recyclerView = findViewById(R.id.rcvItemCart);
         loading = findViewById(R.id.loading);
         btnBack = findViewById(R.id.btnBack);
         btnThanhToan = findViewById(R.id.btnThanhToan);
         txtTotalPrice = findViewById(R.id.txtTotalPrice);
-        txtIntoMoney = findViewById(R.id.txtIntoMoney);
         txtIntoMoney2 = findViewById(R.id.txtIntoMoney2);
         emptyCart = findViewById(R.id.emptyCart);
         edtGhiChu = findViewById(R.id.edtGhiChu);
@@ -249,8 +257,38 @@ public class CartActivity extends AppCompatActivity {
         if(!cart.getPrice().equals("")){
             String moneyPrice = formatter.format(Integer.parseInt(cart.getPrice()));
             txtTotalPrice.setText(moneyPrice);
-            txtIntoMoney.setText(moneyPrice);
             txtIntoMoney2.setText(moneyPrice);
+            txtAddress.setText(cart.getReceivingAddress());
+        }
+    }
+
+    @Override
+    public void onSwiped(RecyclerView.ViewHolder viewHolder) {
+        if(viewHolder instanceof CartItemAdapter.CartItemViewHolder){
+            String nameUserDelete = cartItems.get(viewHolder.getAdapterPosition()).getName() + " - "+cartItems.get(viewHolder.getAdapterPosition()).getSize();
+            CartItem cartItemDelete = cartItems.get(viewHolder.getAdapterPosition());
+            int indexDelete = viewHolder.getAdapterPosition();
+
+            if( cart.getItems() != null){
+                cartAdapter.removeItem(indexDelete);
+                cart.getItems().remove(indexDelete);
+                cart.updateTotalPrice();
+                SetData(cart);
+
+                Snackbar snackbar = Snackbar.make(llListItem, "Đã xóa "+nameUserDelete, Snackbar.LENGTH_LONG);
+
+                snackbar.setAction("Khôi phục", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        cartAdapter.undoItem(cartItemDelete,indexDelete, user.getPhoneNumber());
+                        cart.getItems().add(indexDelete, cartItemDelete);
+                        cart.updateTotalPrice();
+                        SetData(cart);
+                    }
+                });
+                snackbar.setActionTextColor(Color.YELLOW);
+                snackbar.show();
+            }
         }
     }
 }

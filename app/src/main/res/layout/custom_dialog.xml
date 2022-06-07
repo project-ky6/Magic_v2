@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="20dp"
     android:layout_height="wrap_content">
@@ -13,14 +14,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <TextView
-        android:layout_marginTop="30dp"
-        android:text="Magic coffe"
+        android:layout_marginTop="20dp"
+        android:text="Bạn có muốn đăng xuất không"
         android:textColor="@color/black"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="25dp"
         android:textAlignment="center"
         android:textSize="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -28,13 +30,19 @@
         <Button
             android:id="@+id/btn_cancel"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hủy" />
+            android:layout_height="40dp"
+            android:background="@drawable/custom_button"
+            android:backgroundTint="@color/primary_admin"
+            android:text="Hủy"
+            app:backgroundTint="@null" />
 
         <Button
             android:id="@+id/btn_ok"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:background="@drawable/custom_button"
+            android:backgroundTint="@color/primary_admin"
+            app:backgroundTint="@null"
+            android:layout_height="40dp"
             android:layout_alignParentEnd="true"
             android:text="Đăng xuất" />
     </RelativeLayout>

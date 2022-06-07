@@ -176,6 +176,7 @@ public class Cart implements Serializable {
         return total;
     }
 
+
     public void updateQuantity(CartItem item){
         for(CartItem cartItem: Items) {
             if (cartItem.getCfId().equals(item.getCfId())) {

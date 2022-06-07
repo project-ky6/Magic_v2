@@ -10,8 +10,6 @@ import com.example.magiccoffee_v2.api.ApiService;
 import com.example.magiccoffee_v2.dto.Cart;
 import com.example.magiccoffee_v2.dto.User;
 import com.example.magiccoffee_v2.gui.adapter.CartAdapter;
-import com.example.magiccoffee_v2.gui.utils.RequestCode;
-import com.example.magiccoffee_v2.gui.utils.Utils;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -21,9 +19,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +35,10 @@ public class HistoryActivity extends AppCompatActivity {
 
     private LinearLayout llHistory, llCurrent;
     private RecyclerView rcvCurrentOrder, rcvOrderHistory;
+    private RelativeLayout empty;
+    private ImageView imgCartEmpty;
+    private TextView txtTitleEmpty;
+
     private List<Cart> cartsCurrent, cartsHistory;
     private CartAdapter cartCurrentAdapter, cartHistoryAdapter;
     private User user;
@@ -83,7 +86,14 @@ public class HistoryActivity extends AppCompatActivity {
 
         rcvCurrentOrder.setNestedScrollingEnabled(false);
         rcvOrderHistory.setNestedScrollingEnabled(false);
+        empty = findViewById(R.id.empty);
+        imgCartEmpty = findViewById(R.id.imgCartEmpty);
+        txtTitleEmpty = findViewById(R.id.txtTitleEmpty);
 
+        imgCartEmpty.setImageResource(R.mipmap.history_80);
+        txtTitleEmpty.setText("Bạn chưa đặt đơn hàng nào");
+
+        empty.setVisibility(View.VISIBLE);
         llCurrent.setVisibility(View.GONE);
         llHistory.setVisibility(View.GONE);
     }
@@ -122,6 +132,7 @@ public class HistoryActivity extends AppCompatActivity {
                     else {
                         llHistory.setVisibility(View.VISIBLE);
                     }
+                    empty.setVisibility(View.GONE);
                 }
             }
             @Override

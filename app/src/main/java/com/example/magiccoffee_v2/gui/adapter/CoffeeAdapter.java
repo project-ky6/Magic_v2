@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -20,20 +22,25 @@ import com.example.magiccoffee_v2.gui.DetailActivity;
 import com.example.magiccoffee_v2.R;
 
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
-public class CoffeeAdapter extends RecyclerView.Adapter<CoffeeAdapter.CoffeViewHolder>{
+public class CoffeeAdapter extends RecyclerView.Adapter<CoffeeAdapter.CoffeViewHolder> implements Filterable {
     public List<Coffee> lCoffee;
+    public List<Coffee> lCoffeeOld;
     private Context mContext;
     private boolean visibilityPrice = true;
 
     public CoffeeAdapter(Context mContext, List<Coffee> lCoffee, boolean visibilityPrice){
         this.lCoffee = lCoffee;
+        this.lCoffeeOld = lCoffee;
         this.mContext = mContext;
         this.visibilityPrice = visibilityPrice;
     }
     public CoffeeAdapter(Context mContext, List<Coffee> lCoffee){
         this.lCoffee = lCoffee;
+        this.lCoffeeOld = lCoffee;
         this.mContext = mContext;
     }
     @NonNull
@@ -84,6 +91,7 @@ public class CoffeeAdapter extends RecyclerView.Adapter<CoffeeAdapter.CoffeViewH
         return 0;
     }
 
+
     public class CoffeViewHolder extends RecyclerView.ViewHolder{
         public ImageView imageView;
         public TextView txtTitle;
@@ -97,5 +105,36 @@ public class CoffeeAdapter extends RecyclerView.Adapter<CoffeeAdapter.CoffeViewH
             txtPrice = itemView.findViewById(R.id.txtPrice);
             llLayout = itemView.findViewById(R.id.layout_item_coffee);
         }
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String strSearch = charSequence.toString();
+                if(strSearch.isEmpty()){
+                    lCoffee = lCoffeeOld;
+                }else {
+                    List<Coffee> list = new ArrayList<Coffee>();
+                    for(Coffee coffee: lCoffeeOld){
+                        if(coffee.getName().toLowerCase().contains(strSearch.toLowerCase())){
+                            list.add(coffee);
+                        }
+                    }
+                    lCoffee = list;
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = lCoffee;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                lCoffee =(List<Coffee>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 }

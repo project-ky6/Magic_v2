@@ -9,10 +9,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.example.magiccoffee_v2.R;
 
 public class HeartFragment extends Fragment {
+    private RelativeLayout empty;
+    private ImageView imgCartEmpty;
+    private TextView txtTitleEmpty;
 
     public HeartFragment() {
         // Required empty public constructor
@@ -27,6 +33,15 @@ public class HeartFragment extends Fragment {
             window.setStatusBarColor(this.getResources().getColor(R.color.white));
         }
         View view = inflater.inflate(R.layout.fragment_heart, container, false);
+
+
+        empty = view.findViewById(R.id.empty);
+        imgCartEmpty = view.findViewById(R.id.imgCartEmpty);
+        txtTitleEmpty = view.findViewById(R.id.txtTitleEmpty);
+
+        empty.setVisibility(View.VISIBLE);
+        imgCartEmpty.setImageResource(R.mipmap.heart_100);
+        txtTitleEmpty.setText("Chưa có sản phẩm yêu thích nào");
 
         return view;
     }

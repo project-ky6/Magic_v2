@@ -11,6 +11,10 @@
     <!--    My color   -->
     <color name="toolbar">#05445E</color>
     <color name="primary_02">#75E6DA</color>
+
+    <color name="primary_admin">#10479a</color>
+    <color name="btn_admin">#003159</color>
+
     <color name="background">#fff</color>
     <color name="dark">#141921</color>
     <color name="light_dark">#232730</color>

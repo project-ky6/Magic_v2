@@ -99,6 +99,21 @@ public class DataLocalManager {
         });
     }
 
+    public static void removeItemCart(int index, String Uid){
+        ApiService.apiService.getCart(Uid).enqueue(new Callback<Cart>() {
+            @Override
+            public void onResponse(Call<Cart> call, Response<Cart> response) {
+                Cart temp = response.body();
+                temp.getItems().remove(index);
+                setCart(temp);
+            }
+            @Override
+            public void onFailure(Call<Cart> call, Throwable t) {
+
+            }
+        });
+    }
+
     public static Cart getCart(){
         String strJsonCart = DataLocalManager.getInstance().mySharedPreferences.getStringValue(PREF_OBJECT_CART);
         Gson gson = new Gson();
@@ -108,6 +123,7 @@ public class DataLocalManager {
     public static void deleteAllCart(){
         DataLocalManager.getInstance().mySharedPreferences.putStringValue(PREF_OBJECT_CART,"");
     }
+
     public static void setIdUser(String id){
         DataLocalManager.getInstance().mySharedPreferences.putStringValue(PREF_OBJECT_ID_USER, id);
     }

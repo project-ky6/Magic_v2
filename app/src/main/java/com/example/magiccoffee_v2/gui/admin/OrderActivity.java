@@ -8,12 +8,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.example.magiccoffee_v2.api.ApiService;
 import com.example.magiccoffee_v2.dto.Cart;
 import com.example.magiccoffee_v2.dto.Member;
 import com.example.magiccoffee_v2.gui.adapter.CartAdapter;
 import com.example.magiccoffee_v2.R;
+import com.example.magiccoffee_v2.gui.utils.RequestCode;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -33,6 +35,7 @@ public class OrderActivity extends AppCompatActivity {
     private CartAdapter cartAdapter;
     private String action;
     private Member member;
+    private TextView txtTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,10 +44,20 @@ public class OrderActivity extends AppCompatActivity {
 
         action = getIntent().getAction();
 
+
+
         rcvListOrder = findViewById(R.id.rcvListOrder);
         loading = findViewById(R.id.loading);
         orderEmpty = findViewById(R.id.orderEmpty);
-
+        txtTitle = findViewById(R.id.txtTitle);
+        if(action != null){
+            if(action.equals(RequestCode.STATUS_CART_WAITFORPAY)){
+                txtTitle.setText("Thanh toán");
+            }
+            else if(action.equals(RequestCode.STATUS_CART_DOING)){
+                txtTitle.setText("Đã nhận");
+            }
+        }
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rcvListOrder.setLayoutManager(linearLayoutManager);
 

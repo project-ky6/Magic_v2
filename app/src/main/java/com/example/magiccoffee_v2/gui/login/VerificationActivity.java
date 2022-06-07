@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -38,7 +39,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class VerificationActivity extends AppCompatActivity {
-    private TextView txtPhoneNumber;
+    private TextView txtPhoneNumber, txtCountDown;
     private FirebaseAuth mAuth;
     private String mVerificationId;
     private Button btnNext;
@@ -84,6 +85,16 @@ public class VerificationActivity extends AppCompatActivity {
 
             }
         });
+
+        CountDownTimer Timer = new CountDownTimer(60000, 1000) {
+            public void onTick(long millisUntilFinished) {
+                txtCountDown.setText("Mã xác nhận có hiệu lực trong " + millisUntilFinished / 1000 + " s");
+            }
+
+            public void onFinish() {
+                txtCountDown.setText("done!");
+            }
+        }.start();
     }
 
     private boolean validatePinView() {
@@ -138,6 +149,7 @@ public class VerificationActivity extends AppCompatActivity {
         txtPhoneNumber = findViewById(R.id.txtPhoneNumber);
         pinView = findViewById(R.id.firstPinView);
         loading = findViewById(R.id.loading);
+        txtCountDown = findViewById(R.id.txtCountDown);
     }
 
     private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {

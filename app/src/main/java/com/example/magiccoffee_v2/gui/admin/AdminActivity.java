@@ -5,12 +5,16 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.Menu;
+import android.view.View;
 import android.view.Window;
+import android.widget.TextView;
 
 import com.example.magiccoffee_v2.dto.Member;
+import com.example.magiccoffee_v2.gui.CustomDialogClass;
 import com.example.magiccoffee_v2.gui.dataLocal.DataLocalManager;
 import com.example.magiccoffee_v2.gui.login.LoginMemberActivity;
 import com.example.magiccoffee_v2.R;
+import com.example.magiccoffee_v2.gui.my_interface.IClickDialog;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
@@ -25,6 +29,9 @@ import androidx.fragment.app.FragmentTransaction;
 public class AdminActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawer_layout;
+    private TextView txtName, txtID;
+
+    private CustomDialogClass customDialogClass;
 
     private static final int FRAGMENT_HOME = 0;
     private static final int FRAGMENT_THONGKE = 1;
@@ -40,15 +47,24 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
 
         if (Build.VERSION.SDK_INT >= 21) {
             Window window = this.getWindow();
-            window.setStatusBarColor(this.getResources().getColor(R.color.primary));
+            window.setStatusBarColor(this.getResources().getColor(R.color.primary_admin));
         }
         DataLocalManager.init(getApplicationContext());
 
         drawer_layout = findViewById(R.id.drawer_layout);
 
+
         Bundle bundle = getIntent().getBundleExtra("Data");
 
         member = (Member)bundle.getSerializable("Member");
+
+
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        View headerView = navigationView.getHeaderView(0);
+        txtName = headerView.findViewById(R.id.txtName);
+        txtID = headerView.findViewById(R.id.txtID);
+        txtName.setText(member.getName());
+        txtID.setText(member.getId().substring(0, 10));
 
         Toolbar toolbar = findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
@@ -59,7 +75,6 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
         drawer_layout.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         replaceFragment(new DashboardFragment(member));
     }
@@ -82,7 +97,9 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
 
                 return true;
             case R.id.action_logout:
+
                 Logout();
+
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -111,9 +128,19 @@ public class AdminActivity extends AppCompatActivity implements NavigationView.O
     }
 
     private void Logout() {
-        Intent intent = new Intent(AdminActivity.this, LoginMemberActivity.class);
-        startActivity(intent);
-        finish();
+        customDialogClass = new CustomDialogClass(this, new IClickDialog() {
+            @Override
+            public void onClickOk() {
+                Intent intent = new Intent(AdminActivity.this, LoginMemberActivity.class);
+                startActivity(intent);
+                finish();
+            }
+            @Override
+            public void onClickCancel() {
+                customDialogClass.hide();
+            }
+        });
+        customDialogClass.show();
     }
 
     @Override

@@ -191,22 +191,26 @@ public class DetailActivity extends AppCompatActivity {
         });
         btnAddToCart.setOnClickListener(view -> {
             try{
-                if(quantity > 0){
-                    checkQuantity();
-                    checkSize();
-                    checkTemper();
+                if(quantity> 0 && quantity <= 10){
+                    if(quantity > 0){
+                        checkQuantity();
+                        checkSize();
+                        checkTemper();
 
-                    String name = coffee.getName();
-                    String image = coffee.getImageLink();
-                    String cfId = coffee.getId();
+                        String name = coffee.getName();
+                        String image = coffee.getImageLink();
+                        String cfId = coffee.getId();
 
-                    CartItem cartItem = new CartItem(quantity, name, image, totalPrice, cfId, temper, size);
+                        CartItem cartItem = new CartItem(quantity, name, image, totalPrice, cfId, temper, size);
 
-                    DataLocalManager.updateCart(cartItem, user.getUid(),user.getPhoneNumber());
-                    Toast.makeText(getApplicationContext(), "Thêm vào giỏ hàng thành công", Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    Toast.makeText(getApplicationContext(), "Số lượng phải lớn hơn 0 mới được thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
+                        DataLocalManager.updateCart(cartItem, user.getUid(),user.getPhoneNumber());
+                        Toast.makeText(getApplicationContext(), "Thêm vào giỏ hàng thành công", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Toast.makeText(getApplicationContext(), "Số lượng phải lớn hơn 0 mới được thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
+                    }
+                }else{
+                    Toast.makeText(getApplicationContext(), "Số lượng phải từ 1 tới 10", Toast.LENGTH_SHORT).show();
                 }
             }
             catch (Exception ex){
@@ -230,7 +234,7 @@ public class DetailActivity extends AppCompatActivity {
                 totalPrice += Float.parseFloat(t.getNotePrice());
         }
         String moneyTotal = formatter.format(totalPrice*quantity);
-//        txtTotalPrice.setText(moneyTotal);
+        txtPrice.setText(moneyTotal);
     }
 
     private void checkQuantity() {

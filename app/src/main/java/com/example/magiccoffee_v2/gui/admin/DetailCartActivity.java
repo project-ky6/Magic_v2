@@ -151,7 +151,6 @@ public class DetailCartActivity extends AppCompatActivity{
         });
     }
 
-
     private void InitEvent() {
 
         btnHetHang.setOnClickListener(view -> {

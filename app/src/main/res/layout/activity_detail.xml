@@ -15,6 +15,7 @@
 
         <RelativeLayout
             android:padding="10dp"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="15dp">
@@ -23,6 +24,7 @@
                 android:id="@+id/imgBtnBack"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:backgroundTint="#4FCFCFCF"
                 android:background="@drawable/custom_button_toolbar"
                 android:src="@mipmap/back_56" />
 
@@ -30,6 +32,7 @@
                 android:id="@+id/imgBtnCart"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:backgroundTint="#4FCFCFCF"
                 android:layout_alignParentEnd="true"
                 android:layout_marginLeft="10dp"
                 android:background="@drawable/custom_button_toolbar"
@@ -38,7 +41,7 @@
         </RelativeLayout>
 
     <LinearLayout
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="270dp"
         android:id="@+id/lLayout"
         android:orientation="vertical"
         android:background="@drawable/custom_border_layout_rd"
@@ -158,15 +161,6 @@
                                     android:text="Nhỏ"
                                     android:textAlignment="center"
                                     android:textColor="@color/black" />
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:text="49.000đ"
-                                    android:textAlignment="textEnd"
-                                    android:textColor="@color/black"
-                                    android:textSize="16dp" />
                             </LinearLayout>
 
                             <LinearLayout
@@ -183,14 +177,6 @@
                                     android:textAlignment="center"
                                     android:textColor="@color/black" />
 
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:text="49.000đ"
-                                    android:textAlignment="textEnd"
-                                    android:textColor="@color/black"
-                                    android:textSize="16dp" />
                             </LinearLayout>
 
                             <LinearLayout
@@ -206,14 +192,7 @@
                                     android:textAlignment="center"
                                     android:textColor="@color/black" />
 
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:text="49.000đ"
-                                    android:textAlignment="textEnd"
-                                    android:textColor="@color/black"
-                                    android:textSize="16dp" />
+
                             </LinearLayout>
                         </LinearLayout>
 
@@ -256,15 +235,6 @@
                                     android:text="Đá"
                                     android:textAlignment="center"
                                     android:textColor="@color/black" />
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:text="49.000đ"
-                                    android:textAlignment="textEnd"
-                                    android:textColor="@color/black"
-                                    android:textSize="16dp" />
                             </LinearLayout>
 
                             <LinearLayout
@@ -279,15 +249,6 @@
                                     android:text="Nóng"
                                     android:textAlignment="center"
                                     android:textColor="@color/black" />
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:text="49.000đ"
-                                    android:textAlignment="textEnd"
-                                    android:textColor="@color/black"
-                                    android:textSize="16dp" />
                             </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
@@ -302,7 +263,6 @@
             android:layout_height="wrap_content">
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:background="@drawable/custom_button_toolbar"
                 android:layout_height="wrap_content">
                 <Button
                     android:id="@+id/btnExcept"
@@ -311,12 +271,12 @@
                     android:text="-"
                     android:textColor="@color/black"
                     android:layout_width="40dp"
-                    android:textSize="18dp"
+                    android:textSize="22dp"
                     android:layout_height="50dp"/>
                 <TextView
                     android:id="@+id/txtQuantity"
                     android:text="1"
-                    android:textSize="16dp"
+                    android:textSize="20dp"
                     android:textColor="@color/black"
                     android:paddingHorizontal="10dp"
                     android:layout_width="wrap_content"
@@ -325,7 +285,7 @@
                     android:id="@+id/btnPlus"
                     android:background="@color/no_color"
                     android:text="+"
-                    android:textSize="18dp"
+                    android:textSize="22dp"
                     android:textColor="@color/black"
                     android:layout_width="40dp"
                     android:layout_height="50dp"/>
@@ -339,7 +299,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:background="@drawable/custom_button_toolbar"
+                android:background="@drawable/custom_button"
+                android:backgroundTint="@color/primary"
                 android:paddingVertical="12dp"
                 android:text="Thêm vào giỏ hàng"
                 app:backgroundTint="@null" />

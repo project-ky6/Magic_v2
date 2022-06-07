@@ -84,7 +84,6 @@
                     android:id="@+id/rcvMenu"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingHorizontal="5dp"
                     android:scrollbars="none">
 
                 </androidx.recyclerview.widget.RecyclerView>

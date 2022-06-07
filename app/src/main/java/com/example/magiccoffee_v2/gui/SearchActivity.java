@@ -1,6 +1,7 @@
 package com.example.magiccoffee_v2.gui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -52,7 +53,10 @@ public class SearchActivity extends AppCompatActivity {
         }
         InitView();
         SetUpAdapter();
+        loading.setVisibility(View.VISIBLE);
+        CallApi();
         InitEvent();
+
     }
     private void SetUpAdapter() {
         linearLayoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
@@ -60,17 +64,17 @@ public class SearchActivity extends AppCompatActivity {
         rcvMenu.setLayoutManager(gridLayoutManager);
 
         coffeeAdapter = new CoffeeAdapter(SearchActivity.this, coffees);
-
         rcvMenu.setAdapter(coffeeAdapter);
     }
 
     private void InitView() {
-        loading.setVisibility(View.GONE);
 
         txtClose = findViewById(R.id.txtClose);
         editSearch = findViewById(R.id.editSearch);
         loading = findViewById(R.id.loading);
         rcvMenu = findViewById(R.id.rcvMenu);
+        loading.setVisibility(View.GONE);
+
     }
 
     private void InitEvent() {
@@ -81,29 +85,23 @@ public class SearchActivity extends AppCompatActivity {
         editSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+                coffeeAdapter.getFilter().filter(charSequence.toString());
             }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+                coffeeAdapter.getFilter().filter(charSequence.toString());
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
-                try {
-                    loading.setVisibility(View.VISIBLE);
-                    Search(editSearch.getText().toString());
-                }
-                catch (Exception ex){
-
-                }
+                coffeeAdapter.getFilter().filter(editable.toString());
             }
         });
     }
 
-    private void Search(String s) {
-        ApiService.apiService.searchCoffees(s).enqueue(new Callback<List<Coffee>>() {
+    private void CallApi() {
+        ApiService.apiService.getListCoffee().enqueue(new Callback<List<Coffee>>() {
             @Override
             public void onResponse(Call<List<Coffee>> call, Response<List<Coffee>> response) {
                 coffees.clear();

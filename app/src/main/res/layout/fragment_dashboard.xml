@@ -19,20 +19,22 @@
             android:layout_height="wrap_content">
 
             <Button
+                android:drawableTop="@mipmap/order_70"
                 android:id="@+id/btnDonHang"
                 android:layout_marginRight="5dp"
                 android:text="Đơn hàng"
                 app:backgroundTint="@null"
-                android:background="@color/primary"
+                android:background="@color/btn_admin"
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="140dp"/>
             <Button
+                android:drawableTop="@mipmap/order_70_danhan"
                 android:id="@+id/btnDonHangDaNhan"
                 android:layout_marginLeft="5dp"
                 android:text="Đã nhận"
                 app:backgroundTint="@null"
-                android:background="@color/primary"
+                android:background="@color/btn_admin"
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="140dp"/>
@@ -45,10 +47,11 @@
             android:layout_height="wrap_content">
 
             <Button
+                android:drawableTop="@mipmap/order_70_thanhtoan"
                 android:id="@+id/btnDHChoThanhToan"
                 android:text="Đơn hàng chờ thanh toán"
                 app:backgroundTint="@null"
-                android:background="@color/primary"
+                android:background="@color/btn_admin"
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="140dp"/>

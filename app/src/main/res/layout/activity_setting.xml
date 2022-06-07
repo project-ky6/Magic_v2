@@ -10,7 +10,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:background="@color/toolbar"
+        android:background="@color/primary_admin"
         android:layout_height="wrap_content">
         <ImageButton
             android:id="@+id/btnBack"
@@ -32,7 +32,6 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginTop="10dp"
         android:background="@color/white"
         android:paddingVertical="15dp"
         android:paddingHorizontal="10dp"

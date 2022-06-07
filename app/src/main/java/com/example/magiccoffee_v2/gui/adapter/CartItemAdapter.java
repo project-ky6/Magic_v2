@@ -12,9 +12,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.magiccoffee_v2.dto.CartItem;
+import com.example.magiccoffee_v2.gui.dataLocal.DataLocalManager;
 import com.example.magiccoffee_v2.gui.dataLocal.ImageInternalStorage;
 import com.example.magiccoffee_v2.gui.my_interface.IClickItemCartListener;
 import com.example.magiccoffee_v2.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.text.NumberFormat;
 import java.util.List;
@@ -99,6 +102,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartIt
         public TextView txtQuantily;
         public ImageView btnDecrease, btnIncrease;
         public LinearLayout llBtnQuantity;
+        public LinearLayout layoutForeGround;
 
         public CartItemViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -111,6 +115,20 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartIt
             btnDecrease = itemView.findViewById(R.id.btnExcept);
             btnIncrease = itemView.findViewById(R.id.btnPlus);
             llBtnQuantity = itemView.findViewById(R.id.llBtnQuantity);
+            layoutForeGround = itemView.findViewById(R.id.layoutForeGround);
         }
+    }
+
+    public void removeItem(int index){
+        cartItems.remove(index);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        DataLocalManager.removeItemCart(index,user.getUid());
+        notifyItemRemoved(index);
+    }
+    public void undoItem(CartItem item, int index, String phoneNumber){
+        cartItems.add(index, item);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        DataLocalManager.updateCart(item,user.getUid(), phoneNumber);
+        notifyItemInserted(index);
     }
 }

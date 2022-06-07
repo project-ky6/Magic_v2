@@ -19,7 +19,7 @@
                 android:id="@+id/toolBar"
                 app:title="Magic Coffee"
                 app:titleTextColor="@color/white"
-                android:background="@color/primary"
+                android:background="@color/primary_admin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             </androidx.appcompat.widget.Toolbar>

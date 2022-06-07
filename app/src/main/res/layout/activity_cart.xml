@@ -64,6 +64,7 @@
                         android:layout_weight="1">
 
                         <LinearLayout
+                            android:id="@+id/llListItem"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical">
@@ -78,6 +79,7 @@
                                 android:textStyle="bold" />
 
                             <TextView
+                                android:id="@+id/txtAddress"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@color/white"
@@ -165,6 +167,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:paddingHorizontal="10dp"
+                                    android:paddingBottom="10dp"
                                     android:orientation="horizontal">
 
                                     <TextView
@@ -177,33 +180,6 @@
 
                                     <TextView
                                         android:id="@+id/txtTotalPrice"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="10dp"
-                                        android:text="150.000 đ"
-                                        android:textAlignment="textEnd"
-                                        android:textColor="@color/black"
-                                        android:textSize="16dp" />
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_marginBottom="10dp"
-                                    android:padding="10dp"
-                                    android:background="@color/white"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="10dp"
-                                        android:text="Tổng thanh toán"
-                                        android:textColor="@color/black"
-                                        android:textSize="16dp" />
-
-                                    <TextView
-                                        android:id="@+id/txtIntoMoney"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="10dp"
@@ -254,6 +230,7 @@
                         <Button
                             android:id="@+id/btnThanhToan"
                             android:paddingVertical="10dp"
+                            app:backgroundTint="@null"
                             android:background="@color/primary"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

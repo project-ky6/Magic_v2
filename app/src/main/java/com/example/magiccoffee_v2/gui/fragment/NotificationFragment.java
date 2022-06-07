@@ -11,6 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.example.magiccoffee_v2.R;
 import com.example.magiccoffee_v2.api.ApiService;
@@ -35,7 +38,9 @@ import retrofit2.Response;
 public class NotificationFragment extends Fragment {
 
     private RecyclerView rcvNotification;
-
+    private RelativeLayout empty;
+    private ImageView imgCartEmpty;
+    private TextView txtTitleEmpty;
 
     private NotificationAdapter notificationAdapter;
     private List<Notification> notifications;
@@ -45,12 +50,18 @@ public class NotificationFragment extends Fragment {
         this.user = user;
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_notification, container, false);
         rcvNotification = view.findViewById(R.id.rcvNotification);
+        empty = view.findViewById(R.id.empty);
+        imgCartEmpty = view.findViewById(R.id.imgCartEmpty);
+        txtTitleEmpty = view.findViewById(R.id.txtTitleEmpty);
+
+        empty.setVisibility(View.GONE);
+        imgCartEmpty.setImageResource(R.mipmap.notification_100);
+        txtTitleEmpty.setText("Chưa có thông báo nào");
 
 
         notifications = user.getNotifications();
@@ -77,7 +88,8 @@ public class NotificationFragment extends Fragment {
                 if (error != null) {
                     return;
                 }
-                notifications.clear();
+                if(notifications != null)
+                    notifications.clear();
                 ApiService.apiService.getUser(user.getUid()).enqueue(new Callback<User>() {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
@@ -88,6 +100,9 @@ public class NotificationFragment extends Fragment {
                             Collections.reverse(lt);
                             notifications.addAll(lt);
                             notificationAdapter.notifyDataSetChanged();
+                        }
+                        else{
+                            empty.setVisibility(View.VISIBLE);
                         }
                     }
 
